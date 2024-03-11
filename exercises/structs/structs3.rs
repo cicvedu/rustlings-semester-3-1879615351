@@ -29,12 +29,12 @@ impl Package {
         }
     }
 
-    fn is_international(&self) -> ??? {
-        // Something goes here...
+    fn is_international(&self) -> bool {
+        !self.recipient_country.eq(&self.sender_country)  //直接字符串比较有问题? ，eq对值比较，== 对内存地址比较
     }
 
-    fn get_fees(&self, cents_per_gram: i32) -> ??? {
-        // Something goes here...
+    fn get_fees(&self, cents_per_gram: i32) -> i32 {
+        self.weight_in_grams * cents_per_gram
     }
 }
 
