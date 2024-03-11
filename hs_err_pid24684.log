@@ -1,0 +1,1660 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (mallocTracker.cpp:216), pid=24684, tid=24728
+#  fatal error: NMT corruption: Block at 0x00007f481016e850: footer canary broken at 0x00007f481016e860 (buffer overflow?)
+#
+# JRE version: OpenJDK Runtime Environment JBR-17.0.9+8-1166-nomod (17.0.9+8) (build 17.0.9+8-b1166)
+# Java VM: OpenJDK 64-Bit Server VM JBR-17.0.9+8-1166-nomod (17.0.9+8-b1166, mixed mode, tiered, compressed oops, compressed class ptrs, g1 gc, linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0xb64887]  MallocHeader::check_block_integrity() const+0xd7
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E" (or dumping to /home/yansu/research_workspace/rustlings-semester-3-1879615351/core.24684)
+#
+# If you would like to submit a bug report, please visit:
+#   https://youtrack.jetbrains.com/issues/JBR
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Djpackage.app-version=1.31.107 -ea -Xmx1G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpGzipLevel=1 -XX:NativeMemoryTracking=summary -XX:CICompilerCount=2 -Dfleet.distribution.mode=true -Dfleet.dock.version=1.31.107 -Dfleet.build.date=1709819615 -Dkotlinx.coroutines.debug=off -Dnoria.render.mode=skiko -Dsun.java2d.uiScale.enabled=true -Dcom.sun.awt.reportDeadKeysAsNormal=false -Dskiko.win.exception.logger.enabled=true -Dskiko.collect.stat=true --add-opens=java.base/java.lang=fleet.util.modules -Djpackage.app-path=/home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet -Djdk.module.main=fleet.dock.bootstrap fleet.dock.bootstrap/fleet.dock.bootstrap.FleetBootstrapKt fleet://open?args_count=1&arg_0=.&pwd=%2Fhome%2Fyansu%2Fresearch_workspace%2Frustlings-semester-3-1879615351
+
+Host: 12th Gen Intel(R) Core(TM) i9-12900H, 20 cores, 31G, Ubuntu 20.04.6 LTS
+Time: Mon Mar 11 14:56:14 2024 CST elapsed time: 0.391886 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f484801dfe0):  JavaThread "DefaultDispatcher-worker-3" daemon [_thread_in_vm, id=24728, stack(0x00007f48899fd000,0x00007f4889afe000)]
+
+Stack: [0x00007f48899fd000,0x00007f4889afe000],  sp=0x00007f4889afac40,  free space=1015k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xb64887]  MallocHeader::check_block_integrity() const+0xd7
+V  [libjvm.so+0xb64caa]  MallocTracker::record_free(void*)+0x1a
+V  [libjvm.so+0xc1e568]  os::free(void*)+0x98
+V  [libjvm.so+0x7c6615]  BasicHashtable<(MEMFLAGS)1>::free_entry(BasicHashtableEntry<(MEMFLAGS)1>*)+0x25
+V  [libjvm.so+0xe1a801]  SystemDictionary::resolve_instance_class_or_null(Symbol*, Handle, Handle, JavaThread*)+0x461
+V  [libjvm.so+0xe1c546]  SystemDictionary::resolve_or_fail(Symbol*, Handle, Handle, bool, JavaThread*)+0x66
+V  [libjvm.so+0x602321]  ConstantPool::klass_at_impl(constantPoolHandle const&, int, JavaThread*)+0xd1
+V  [libjvm.so+0x602f26]  ConstantPool::klass_ref_at(int, JavaThread*)+0x86
+V  [libjvm.so+0xa9831c]  LinkInfo::LinkInfo(constantPoolHandle const&, int, JavaThread*)+0x3c
+V  [libjvm.so+0xa9ef3f]  LinkResolver::resolve_invoke(CallInfo&, Handle, constantPoolHandle const&, int, Bytecodes::Code, JavaThread*)+0x8f
+V  [libjvm.so+0x82b8de]  InterpreterRuntime::resolve_invoke(JavaThread*, Bytecodes::Code)+0x17e
+V  [libjvm.so+0x82bde7]  InterpreterRuntime::resolve_from_cache(JavaThread*, Bytecodes::Code)+0x37
+j  sun.reflect.annotation.AnnotationParser.parseAnnotation2(Ljava/nio/ByteBuffer;Ljdk/internal/reflect/ConstantPool;Ljava/lang/Class;Z[Ljava/lang/Class;)Ljava/lang/annotation/Annotation;+103 java.base@17.0.9
+j  sun.reflect.annotation.AnnotationParser.parseAnnotations2([BLjdk/internal/reflect/ConstantPool;Ljava/lang/Class;[Ljava/lang/Class;)Ljava/util/Map;+41 java.base@17.0.9
+j  sun.reflect.annotation.AnnotationParser.parseAnnotations([BLjdk/internal/reflect/ConstantPool;Ljava/lang/Class;)Ljava/util/Map;+12 java.base@17.0.9
+j  java.lang.reflect.Executable.declaredAnnotations()Ljava/util/Map;+62 java.base@17.0.9
+j  java.lang.reflect.Executable.declaredAnnotations()Ljava/util/Map;+35 java.base@17.0.9
+j  java.lang.reflect.Executable.getDeclaredAnnotations()[Ljava/lang/annotation/Annotation;+1 java.base@17.0.9
+j  java.lang.reflect.Method.getDeclaredAnnotations()[Ljava/lang/annotation/Annotation;+1 java.base@17.0.9
+j  java.lang.reflect.AccessibleObject.getAnnotations()[Ljava/lang/annotation/Annotation;+1 java.base@17.0.9
+j  com.sun.jmx.mbeanserver.Introspector.descriptorForElement(Ljava/lang/reflect/AnnotatedElement;)Ljavax/management/Descriptor;+9 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.ConvertingMethod.getDescriptor()Ljavax/management/Descriptor;+4 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MXBeanIntrospector.getMBeanAttributeInfo(Ljava/lang/String;Lcom/sun/jmx/mbeanserver/ConvertingMethod;Lcom/sun/jmx/mbeanserver/ConvertingMethod;)Ljavax/management/MBeanAttributeInfo;+112 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MXBeanIntrospector.getMBeanAttributeInfo(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)Ljavax/management/MBeanAttributeInfo;+10 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanIntrospector$MBeanInfoMaker.visitAttribute(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V+7 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanAnalyzer.visit(Lcom/sun/jmx/mbeanserver/MBeanAnalyzer$MBeanVisitor;)V+69 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanIntrospector.makeInterfaceMBeanInfo(Ljava/lang/Class;Lcom/sun/jmx/mbeanserver/MBeanAnalyzer;)Ljavax/management/MBeanInfo;+11 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanIntrospector.getPerInterface(Ljava/lang/Class;)Lcom/sun/jmx/mbeanserver/PerInterface;+54 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanSupport.<init>(Ljava/lang/Object;Ljava/lang/Class;)V+69 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MXBeanSupport.<init>(Ljava/lang/Object;Ljava/lang/Class;)V+3 java.management@17.0.9
+j  javax.management.StandardMBean.construct(Ljava/lang/Object;Ljava/lang/Class;ZZ)V+56 java.management@17.0.9
+j  javax.management.StandardMBean.<init>(Ljava/lang/Object;Ljava/lang/Class;Z)V+9 java.management@17.0.9
+j  java.lang.management.ManagementFactory.lambda$addMXBean$7(Ljava/lang/Object;Ljavax/management/MBeanServer;Ljavax/management/ObjectName;)Ljava/lang/Void;+53 java.management@17.0.9
+j  java.lang.management.ManagementFactory$$Lambda$138+0x00000001002c8308.run()Ljava/lang/Object;+12 java.management@17.0.9
+j  java.security.AccessController.executePrivileged(Ljava/security/PrivilegedExceptionAction;Ljava/security/AccessControlContext;Ljava/lang/Class;)Ljava/lang/Object;+29 java.base@17.0.9
+j  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;)Ljava/lang/Object;+9 java.base@17.0.9
+j  java.lang.management.ManagementFactory.addMXBean(Ljavax/management/MBeanServer;Ljava/lang/String;Ljava/lang/Object;)V+13 java.management@17.0.9
+j  java.lang.management.ManagementFactory.lambda$getPlatformMBeanServer$1(Ljava/util/Map$Entry;)V+18 java.management@17.0.9
+j  java.lang.management.ManagementFactory$$Lambda$137+0x00000001002c7e68.accept(Ljava/lang/Object;)V+4 java.management@17.0.9
+J 392 c1 java.util.stream.ForEachOps$ForEachOp$OfRef.accept(Ljava/lang/Object;)V java.base@17.0.9 (11 bytes) @ 0x00007f48b1313bbc [0x00007f48b1313ac0+0x00000000000000fc]
+j  java.util.Collections$2.tryAdvance(Ljava/util/function/Consumer;)Z+29 java.base@17.0.9
+j  java.util.Collections$2.forEachRemaining(Ljava/util/function/Consumer;)V+2 java.base@17.0.9
+j  java.util.stream.ReferencePipeline$Head.forEach(Ljava/util/function/Consumer;)V+12 java.base@17.0.9
+J 474 c1 java.util.stream.ReferencePipeline$7$1.accept(Ljava/lang/Object;)V java.base@17.0.9 (127 bytes) @ 0x00007f48b13312b4 [0x00007f48b1330da0+0x0000000000000514]
+J 491 c1 java.util.stream.ReferencePipeline$2$1.accept(Ljava/lang/Object;)V java.base@17.0.9 (27 bytes) @ 0x00007f48b133c6dc [0x00007f48b133c4e0+0x00000000000001fc]
+j  java.util.HashMap$ValueSpliterator.forEachRemaining(Ljava/util/function/Consumer;)V+145 java.base@17.0.9
+J 464 c1 java.util.stream.AbstractPipeline.copyInto(Ljava/util/stream/Sink;Ljava/util/Spliterator;)V java.base@17.0.9 (54 bytes) @ 0x00007f48b132ce1c [0x00007f48b132ca40+0x00000000000003dc]
+J 448 c1 java.util.stream.AbstractPipeline.wrapAndCopyInto(Ljava/util/stream/Sink;Ljava/util/Spliterator;)Ljava/util/stream/Sink; java.base@17.0.9 (18 bytes) @ 0x00007f48b1328aac [0x00007f48b1328880+0x000000000000022c]
+j  java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Ljava/util/stream/PipelineHelper;Ljava/util/Spliterator;)Ljava/lang/Void;+3 java.base@17.0.9
+j  java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Ljava/util/stream/PipelineHelper;Ljava/util/Spliterator;)Ljava/lang/Object;+3 java.base@17.0.9
+J 468 c1 java.util.stream.AbstractPipeline.evaluate(Ljava/util/stream/TerminalOp;)Ljava/lang/Object; java.base@17.0.9 (94 bytes) @ 0x00007f48b132e90c [0x00007f48b132e4c0+0x000000000000044c]
+j  java.util.stream.ReferencePipeline.forEach(Ljava/util/function/Consumer;)V+6 java.base@17.0.9
+j  java.lang.management.ManagementFactory.getPlatformMBeanServer()Ljavax/management/MBeanServer;+68 java.management@17.0.9
+j  fleet.dock.impl.WithHeapDumpPathKt$setupHeapDumpPath$2$1.invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;+67 fleet.dock.impl
+j  kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(Ljava/lang/Object;)V+44 kotlin.stdlib
+j  kotlinx.coroutines.DispatchedTask.run()V+317 kotlinx.coroutines.core
+j  kotlinx.coroutines.internal.LimitedDispatcher$Worker.run()V+8 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.TaskImpl.run()V+5 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(Lkotlinx/coroutines/scheduling/Task;)V+2 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(Lkotlinx/coroutines/scheduling/Task;)V+30 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker()V+44 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run()V+1 kotlinx.coroutines.core
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x830ad5]  JavaCalls::call_helper(JavaValue*, methodHandle const&, JavaCallArguments*, JavaThread*)+0x315
+V  [libjvm.so+0x8322cb]  JavaCalls::call_virtual(JavaValue*, Handle, Klass*, Symbol*, Symbol*, JavaThread*)+0x1cb
+V  [libjvm.so+0x8f5ed0]  thread_entry(JavaThread*, JavaThread*)+0x70
+V  [libjvm.so+0xe6403b]  JavaThread::thread_main_inner()+0xdb
+V  [libjvm.so+0xe67940]  Thread::call_run()+0xc0
+V  [libjvm.so+0xc294d1]  thread_native_entry(Thread*)+0xe1
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  sun.reflect.annotation.AnnotationParser.parseAnnotation2(Ljava/nio/ByteBuffer;Ljdk/internal/reflect/ConstantPool;Ljava/lang/Class;Z[Ljava/lang/Class;)Ljava/lang/annotation/Annotation;+103 java.base@17.0.9
+j  sun.reflect.annotation.AnnotationParser.parseAnnotations2([BLjdk/internal/reflect/ConstantPool;Ljava/lang/Class;[Ljava/lang/Class;)Ljava/util/Map;+41 java.base@17.0.9
+j  sun.reflect.annotation.AnnotationParser.parseAnnotations([BLjdk/internal/reflect/ConstantPool;Ljava/lang/Class;)Ljava/util/Map;+12 java.base@17.0.9
+j  java.lang.reflect.Executable.declaredAnnotations()Ljava/util/Map;+62 java.base@17.0.9
+j  java.lang.reflect.Executable.declaredAnnotations()Ljava/util/Map;+35 java.base@17.0.9
+j  java.lang.reflect.Executable.getDeclaredAnnotations()[Ljava/lang/annotation/Annotation;+1 java.base@17.0.9
+j  java.lang.reflect.Method.getDeclaredAnnotations()[Ljava/lang/annotation/Annotation;+1 java.base@17.0.9
+j  java.lang.reflect.AccessibleObject.getAnnotations()[Ljava/lang/annotation/Annotation;+1 java.base@17.0.9
+j  com.sun.jmx.mbeanserver.Introspector.descriptorForElement(Ljava/lang/reflect/AnnotatedElement;)Ljavax/management/Descriptor;+9 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.ConvertingMethod.getDescriptor()Ljavax/management/Descriptor;+4 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MXBeanIntrospector.getMBeanAttributeInfo(Ljava/lang/String;Lcom/sun/jmx/mbeanserver/ConvertingMethod;Lcom/sun/jmx/mbeanserver/ConvertingMethod;)Ljavax/management/MBeanAttributeInfo;+112 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MXBeanIntrospector.getMBeanAttributeInfo(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)Ljavax/management/MBeanAttributeInfo;+10 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanIntrospector$MBeanInfoMaker.visitAttribute(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V+7 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanAnalyzer.visit(Lcom/sun/jmx/mbeanserver/MBeanAnalyzer$MBeanVisitor;)V+69 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanIntrospector.makeInterfaceMBeanInfo(Ljava/lang/Class;Lcom/sun/jmx/mbeanserver/MBeanAnalyzer;)Ljavax/management/MBeanInfo;+11 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanIntrospector.getPerInterface(Ljava/lang/Class;)Lcom/sun/jmx/mbeanserver/PerInterface;+54 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MBeanSupport.<init>(Ljava/lang/Object;Ljava/lang/Class;)V+69 java.management@17.0.9
+j  com.sun.jmx.mbeanserver.MXBeanSupport.<init>(Ljava/lang/Object;Ljava/lang/Class;)V+3 java.management@17.0.9
+j  javax.management.StandardMBean.construct(Ljava/lang/Object;Ljava/lang/Class;ZZ)V+56 java.management@17.0.9
+j  javax.management.StandardMBean.<init>(Ljava/lang/Object;Ljava/lang/Class;Z)V+9 java.management@17.0.9
+j  java.lang.management.ManagementFactory.lambda$addMXBean$7(Ljava/lang/Object;Ljavax/management/MBeanServer;Ljavax/management/ObjectName;)Ljava/lang/Void;+53 java.management@17.0.9
+j  java.lang.management.ManagementFactory$$Lambda$138+0x00000001002c8308.run()Ljava/lang/Object;+12 java.management@17.0.9
+j  java.security.AccessController.executePrivileged(Ljava/security/PrivilegedExceptionAction;Ljava/security/AccessControlContext;Ljava/lang/Class;)Ljava/lang/Object;+29 java.base@17.0.9
+j  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;)Ljava/lang/Object;+9 java.base@17.0.9
+j  java.lang.management.ManagementFactory.addMXBean(Ljavax/management/MBeanServer;Ljava/lang/String;Ljava/lang/Object;)V+13 java.management@17.0.9
+j  java.lang.management.ManagementFactory.lambda$getPlatformMBeanServer$1(Ljava/util/Map$Entry;)V+18 java.management@17.0.9
+j  java.lang.management.ManagementFactory$$Lambda$137+0x00000001002c7e68.accept(Ljava/lang/Object;)V+4 java.management@17.0.9
+J 392 c1 java.util.stream.ForEachOps$ForEachOp$OfRef.accept(Ljava/lang/Object;)V java.base@17.0.9 (11 bytes) @ 0x00007f48b1313bbc [0x00007f48b1313ac0+0x00000000000000fc]
+j  java.util.Collections$2.tryAdvance(Ljava/util/function/Consumer;)Z+29 java.base@17.0.9
+j  java.util.Collections$2.forEachRemaining(Ljava/util/function/Consumer;)V+2 java.base@17.0.9
+j  java.util.stream.ReferencePipeline$Head.forEach(Ljava/util/function/Consumer;)V+12 java.base@17.0.9
+J 474 c1 java.util.stream.ReferencePipeline$7$1.accept(Ljava/lang/Object;)V java.base@17.0.9 (127 bytes) @ 0x00007f48b13312b4 [0x00007f48b1330da0+0x0000000000000514]
+J 491 c1 java.util.stream.ReferencePipeline$2$1.accept(Ljava/lang/Object;)V java.base@17.0.9 (27 bytes) @ 0x00007f48b133c6dc [0x00007f48b133c4e0+0x00000000000001fc]
+j  java.util.HashMap$ValueSpliterator.forEachRemaining(Ljava/util/function/Consumer;)V+145 java.base@17.0.9
+J 464 c1 java.util.stream.AbstractPipeline.copyInto(Ljava/util/stream/Sink;Ljava/util/Spliterator;)V java.base@17.0.9 (54 bytes) @ 0x00007f48b132ce1c [0x00007f48b132ca40+0x00000000000003dc]
+J 448 c1 java.util.stream.AbstractPipeline.wrapAndCopyInto(Ljava/util/stream/Sink;Ljava/util/Spliterator;)Ljava/util/stream/Sink; java.base@17.0.9 (18 bytes) @ 0x00007f48b1328aac [0x00007f48b1328880+0x000000000000022c]
+j  java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Ljava/util/stream/PipelineHelper;Ljava/util/Spliterator;)Ljava/lang/Void;+3 java.base@17.0.9
+j  java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Ljava/util/stream/PipelineHelper;Ljava/util/Spliterator;)Ljava/lang/Object;+3 java.base@17.0.9
+J 468 c1 java.util.stream.AbstractPipeline.evaluate(Ljava/util/stream/TerminalOp;)Ljava/lang/Object; java.base@17.0.9 (94 bytes) @ 0x00007f48b132e90c [0x00007f48b132e4c0+0x000000000000044c]
+j  java.util.stream.ReferencePipeline.forEach(Ljava/util/function/Consumer;)V+6 java.base@17.0.9
+j  java.lang.management.ManagementFactory.getPlatformMBeanServer()Ljavax/management/MBeanServer;+68 java.management@17.0.9
+j  fleet.dock.impl.WithHeapDumpPathKt$setupHeapDumpPath$2$1.invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;+67 fleet.dock.impl
+j  kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(Ljava/lang/Object;)V+44 kotlin.stdlib
+j  kotlinx.coroutines.DispatchedTask.run()V+317 kotlinx.coroutines.core
+j  kotlinx.coroutines.internal.LimitedDispatcher$Worker.run()V+8 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.TaskImpl.run()V+5 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(Lkotlinx/coroutines/scheduling/Task;)V+2 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(Lkotlinx/coroutines/scheduling/Task;)V+30 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker()V+44 kotlinx.coroutines.core
+j  kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run()V+1 kotlinx.coroutines.core
+v  ~StubRoutines::call_stub
+Registers:
+RAX=0x00007f48cbd9e000, RBX=0x00007f481016e850, RCX=0x00007f48cb755ed0, RDX=0x00000000000000d8
+RSP=0x00007f4889afac40, RBP=0x00007f4889afac50, RSI=0x00007f48cb755dc8, RDI=0x00000000e0000000
+R8 =0x00007f481016e850, R9 =0x00007f484801efe0, R10=0x0000000000000000, R11=0x0000000000000000
+R12=0x00007f481016e850, R13=0x00007f484801dfe0, R14=0x00007f4889afad20, R15=0x00000000868d918a
+RIP=0x00007f48cb2c9887, EFLAGS=0x0000000000010246, CSGSFS=0x002b000000000033, ERR=0x0000000000000006
+  TRAPNO=0x000000000000000e
+
+
+Register to memory mapping:
+
+RAX=0x00007f48cbd9e000 points into unknown readable memory: 0x0000000000000058 | 58 00 00 00 00 00 00 00
+RBX=0x00007f481016e850 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+RCX=0x00007f48cb755ed0: <offset 0x0000000000ff0ed0> in /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so at 0x00007f48ca765000
+RDX=0x00000000000000d8 is an unknown value
+RSP=0x00007f4889afac40 is pointing into the stack for thread: 0x00007f484801dfe0
+RBP=0x00007f4889afac50 is pointing into the stack for thread: 0x00007f484801dfe0
+RSI=0x00007f48cb755dc8: <offset 0x0000000000ff0dc8> in /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so at 0x00007f48ca765000
+RDI=0x00000000e0000000 is an unallocated location in the heap
+R8 =0x00007f481016e850 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+R9 =0x00007f484801efe0 points into unknown readable memory: 0x0000000000000003 | 03 00 00 00 00 00 00 00
+R10=0x0 is NULL
+R11=0x0 is NULL
+R12=0x00007f481016e850 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+R13=0x00007f484801dfe0 is a thread
+R14=0x00007f4889afad20 is pointing into the stack for thread: 0x00007f484801dfe0
+R15=0x00000000868d918a is an unknown value
+
+
+Top of Stack: (sp=0x00007f4889afac40)
+0x00007f4889afac40:   00007f4889afada0 00007f481016e860
+0x00007f4889afac50:   00007f4889afac80 00007f48cb2c9caa
+0x00007f4889afac60:   00007f48c4237040 00007f48acb43e38
+0x00007f4889afac70:   00007f484801dfe0 00007f4889afad20
+0x00007f4889afac80:   00007f4889afac90 00007f48cb383568
+0x00007f4889afac90:   00007f4889afacb0 00007f48caf2b615
+0x00007f4889afaca0:   00007f4889afad20 0000000000000000
+0x00007f4889afacb0:   00007f4889afade0 00007f48cb57f801
+0x00007f4889afacc0:   0000000000000000 0000000000000000
+0x00007f4889afacd0:   00007f489557ea98 00000001002ae9a8
+0x00007f4889aface0:   00007f48c4023270 00007f48c4221d30
+0x00007f4889afacf0:   00007f48c4222350 0000000000000000
+0x00007f4889afad00:   00007f4889afad70 0000000000000000
+0x00007f4889afad10:   00007f484801e290 00007f4889afad60
+0x00007f4889afad20:   00007f484801dfe0 0000000000000000
+0x00007f4889afad30:   00007f4889afae20 00007f48cad27e42
+0x00007f4889afad40:   0000000000000000 0000000000000000
+0x00007f4889afad50:   0000000000000000 00007f484801dfe0
+0x00007f4889afad60:   00007f4889afada0 00007f48cad2947f
+0x00007f4889afad70:   00007f484801dfe0 00007f484801e5c0
+0x00007f4889afad80:   00007f484801e620 00007f484801e638
+0x00007f4889afad90:   00007f484801e708 00000000000000d8
+0x00007f4889afada0:   00007f4889afcb30 00007f48cb57f4c5
+0x00007f4889afadb0:   00007f4889afade0 0000000000000001
+0x00007f4889afadc0:   00007f48acb43e38 00007f484801dfe0
+0x00007f4889afadd0:   0000000000000025 0000000000000000
+0x00007f4889afade0:   00007f4889afae60 00007f48cb581546
+0x00007f4889afadf0:   00007f4889afae60 0000000000000000
+0x00007f4889afae00:   0000000000000000 00007f484801dfe0
+0x00007f4889afae10:   0000000000000000 00007f484801df30
+0x00007f4889afae20:   00007f4894722dc0 00007f484801dfe0
+0x00007f4889afae30:   0000000000000000 00007f484801dfe0 
+
+Instructions: (pc=0x00007f48cb2c9887)
+0x00007f48cb2c9787:   66 0f 1f 84 00 00 00 00 00 5b 4c 89 e2 4c 89 ef
+0x00007f48cb2c9797:   41 5c 41 5d 41 5e 5d e9 ed a0 0b 00 90 66 66 2e
+0x00007f48cb2c97a7:   0f 1f 84 00 00 00 00 00 90 55 48 89 e5 53 48 89
+0x00007f48cb2c97b7:   fb 48 83 ec 08 48 81 ff ff 03 00 00 0f 86 87 01
+0x00007f48cb2c97c7:   00 00 f6 c3 07 0f 85 2e 01 00 00 66 81 7b 0e 9e
+0x00007f48cb2c97d7:   e9 74 49 48 8d 05 37 2c 7c 00 48 89 da 48 89 df
+0x00007f48cb2c97e7:   48 8b 30 e8 01 ff ff ff 48 8d 05 72 1b 76 00 49
+0x00007f48cb2c97f7:   89 d8 48 8d 0d 38 c6 48 00 ba c4 00 00 00 48 8d
+0x00007f48cb2c9807:   35 bc c5 48 00 bf 00 00 00 e0 48 8b 00 c6 00 58
+0x00007f48cb2c9817:   31 c0 e8 f2 90 aa ff e8 6d f6 0b 00 48 ba ff ff
+0x00007f48cb2c9827:   ff ff 3f 00 00 00 48 8b 03 48 39 d0 77 73 48 8d
+0x00007f48cb2c9837:   54 03 10 66 81 3a e8 8e 75 0f 48 8b 5d f8 c9 c3
+0x00007f48cb2c9847:   66 0f 1f 84 00 00 00 00 00 48 8d 05 c1 2b 7c 00
+0x00007f48cb2c9857:   48 89 df 48 8b 30 e8 8e fe ff ff 48 8d 05 ff 1a
+0x00007f48cb2c9867:   76 00 49 89 d8 48 8d 0d 5d c6 48 00 ba d8 00 00
+0x00007f48cb2c9877:   00 48 8d 35 49 c5 48 00 bf 00 00 00 e0 48 8b 00
+0x00007f48cb2c9887:   c6 00 58 48 8b 03 4c 8d 4c 03 10 31 c0 e8 77 90
+0x00007f48cb2c9897:   aa ff 48 8b 5d f8 c9 e9 ed f5 0b 00 0f 1f 44 00
+0x00007f48cb2c98a7:   00 48 8d 05 69 2b 7c 00 48 89 da 48 89 df 48 8b
+0x00007f48cb2c98b7:   30 e8 33 fe ff ff 48 8d 05 a4 1a 76 00 49 89 d8
+0x00007f48cb2c98c7:   48 8d 0d aa c5 48 00 ba d2 00 00 00 48 8d 35 ee
+0x00007f48cb2c98d7:   c4 48 00 bf 00 00 00 e0 48 8b 00 c6 00 58 31 c0
+0x00007f48cb2c98e7:   e8 24 90 aa ff e8 9f f5 0b 00 48 8b 03 e9 3c ff
+0x00007f48cb2c98f7:   ff ff 0f 1f 80 00 00 00 00 48 8d 05 11 2b 7c 00
+0x00007f48cb2c9907:   48 89 da 48 89 df 48 8b 30 e8 db fd ff ff 48 8d
+0x00007f48cb2c9917:   05 4c 1a 76 00 49 89 d8 48 8d 0d d2 c4 48 00 ba
+0x00007f48cb2c9927:   be 00 00 00 48 8d 35 96 c4 48 00 bf 00 00 00 e0
+0x00007f48cb2c9937:   48 8b 00 c6 00 58 31 c0 e8 cc 8f aa ff e8 47 f5
+0x00007f48cb2c9947:   0b 00 e9 84 fe ff ff 66 90 48 8d 05 11 1a 76 00
+0x00007f48cb2c9957:   49 89 f8 48 8d 0d 27 c4 48 00 ba aa 00 00 00 48
+0x00007f48cb2c9967:   8d 35 5b c4 48 00 bf 00 00 00 e0 48 8b 00 c6 00
+0x00007f48cb2c9977:   58 31 c0 e8 91 8f aa ff e8 0c f5 0b 00 e9 40 fe 
+
+
+Stack slot to memory mapping:
+stack at sp + 0 slots: 0x00007f4889afada0 is pointing into the stack for thread: 0x00007f484801dfe0
+stack at sp + 1 slots: 0x00007f481016e860 points into unknown readable memory: 0x00000000868d918a | 8a 91 8d 86 00 00 00 00
+stack at sp + 2 slots: 0x00007f4889afac80 is pointing into the stack for thread: 0x00007f484801dfe0
+stack at sp + 3 slots: 0x00007f48cb2c9caa: <offset 0x0000000000b64caa> in /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so at 0x00007f48ca765000
+stack at sp + 4 slots: 0x00007f48c4237040 points into unknown readable memory: 0x00000001000003f1 | f1 03 00 00 01 00 00 00
+stack at sp + 5 slots: 0x00007f48acb43e38 points into unknown readable memory: 0x75730025918affff | ff ff 8a 91 25 00 73 75
+stack at sp + 6 slots: 0x00007f484801dfe0 is a thread
+stack at sp + 7 slots: 0x00007f4889afad20 is pointing into the stack for thread: 0x00007f484801dfe0
+
+
+[error occurred during error reporting (printing code blobs if possible), id 0xb, SIGSEGV (0xb) at pc=0x00007f48cbbcc6f0]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007f48140128a0, length=28, elements={
+0x00007f48c4027fd0, 0x00007f48c42c0020, 0x00007f48c42c18c0, 0x00007f48c42ebe20,
+0x00007f48c42ed370, 0x00007f48c42ee940, 0x00007f48c42f04b0, 0x00007f48c42f1c10,
+0x00007f48c42f31d0, 0x00007f48c43cfa60, 0x00007f48c43d4340, 0x00007f48c47dfe00,
+0x00007f48c47f2260, 0x00007f48c48624d0, 0x00007f48c4953640, 0x00007f48c4954830,
+0x00007f484801dfe0, 0x00007f4848022fe0, 0x00007f4848027d70, 0x00007f4818013e20,
+0x00007f481801b500, 0x00007f481c003ea0, 0x00007f485408f0b0, 0x00007f48100777d0,
+0x00007f4814000fa0, 0x00007f480c000fa0, 0x00007f48c4998280, 0x00007f4814011860
+}
+
+Java Threads: ( => current thread )
+  0x00007f48c4027fd0 JavaThread "main" [_thread_blocked, id=24694, stack(0x00007f48ca515000,0x00007f48ca616000)]
+  0x00007f48c42c0020 JavaThread "Reference Handler" daemon [_thread_blocked, id=24701, stack(0x00007f48ac796000,0x00007f48ac897000)]
+  0x00007f48c42c18c0 JavaThread "Finalizer" daemon [_thread_blocked, id=24702, stack(0x00007f48ac695000,0x00007f48ac796000)]
+  0x00007f48c42ebe20 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=24703, stack(0x00007f48ac594000,0x00007f48ac695000)]
+  0x00007f48c42ed370 JavaThread "Service Thread" daemon [_thread_blocked, id=24704, stack(0x00007f48ac493000,0x00007f48ac594000)]
+  0x00007f48c42ee940 JavaThread "Monitor Deflation Thread" daemon [_thread_blocked, id=24705, stack(0x00007f48ac392000,0x00007f48ac493000)]
+  0x00007f48c42f04b0 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=24706, stack(0x00007f48ac291000,0x00007f48ac392000)]
+  0x00007f48c42f1c10 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=24707, stack(0x00007f48ac190000,0x00007f48ac291000)]
+  0x00007f48c42f31d0 JavaThread "Sweeper thread" daemon [_thread_blocked, id=24708, stack(0x00007f48ac08f000,0x00007f48ac190000)]
+  0x00007f48c43cfa60 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=24709, stack(0x00007f488b68e000,0x00007f488b78f000)]
+  0x00007f48c43d4340 JavaThread "Notification Thread" daemon [_thread_blocked, id=24710, stack(0x00007f488b58d000,0x00007f488b68e000)]
+  0x00007f48c47dfe00 JavaThread "AsyncAppender-Worker-ConsoleLogDelegate" daemon [_thread_blocked, id=24712, stack(0x00007f488ad39000,0x00007f488ae3a000)]
+  0x00007f48c47f2260 JavaThread "AsyncAppender-Worker-FileLogDelegate" daemon [_thread_blocked, id=24713, stack(0x00007f488ac38000,0x00007f488ad39000)]
+  0x00007f48c48624d0 JavaThread "logback-1" daemon [_thread_blocked, id=24714, stack(0x00007f488ab37000,0x00007f488ac38000)]
+  0x00007f48c4953640 JavaThread "DefaultDispatcher-worker-1" daemon [_thread_blocked, id=24715, stack(0x00007f488a70a000,0x00007f488a80b000)]
+  0x00007f48c4954830 JavaThread "DefaultDispatcher-worker-2" daemon [_thread_blocked, id=24716, stack(0x00007f488a609000,0x00007f488a70a000)]
+=>0x00007f484801dfe0 JavaThread "DefaultDispatcher-worker-3" daemon [_thread_in_vm, id=24728, stack(0x00007f48899fd000,0x00007f4889afe000)]
+  0x00007f4848022fe0 JavaThread "DefaultDispatcher-worker-4" daemon [_thread_blocked, id=24729, stack(0x00007f48898c4000,0x00007f48899c5000)]
+  0x00007f4848027d70 JavaThread "DefaultDispatcher-worker-5" daemon [_thread_blocked, id=24730, stack(0x00007f48897c3000,0x00007f48898c4000)]
+  0x00007f4818013e20 JavaThread "DefaultDispatcher-worker-6" daemon [_thread_blocked, id=24731, stack(0x00007f488961a000,0x00007f488971b000)]
+  0x00007f481801b500 JavaThread "process reaper" daemon [_thread_blocked, id=24753, stack(0x00007f48892de000,0x00007f4889300000)]
+  0x00007f481c003ea0 JavaThread "DefaultDispatcher-worker-7" daemon [_thread_blocked, id=24754, stack(0x00007f48891dd000,0x00007f48892de000)]
+  0x00007f485408f0b0 JavaThread "Timer-0" daemon [_thread_blocked, id=24755, stack(0x00007f4888f0d000,0x00007f488900e000)]
+  0x00007f48100777d0 JavaThread "kotlinx.coroutines.DefaultExecutor" daemon [_thread_blocked, id=24756, stack(0x00007f4888b54000,0x00007f4888c55000)]
+  0x00007f4814000fa0 JavaThread "DefaultDispatcher-worker-8" daemon [_thread_blocked, id=24757, stack(0x00007f4888a53000,0x00007f4888b54000)]
+  0x00007f480c000fa0 JavaThread "DefaultDispatcher-worker-9" daemon [_thread_blocked, id=24758, stack(0x00007f4888952000,0x00007f4888a53000)]
+  0x00007f48c4998280 JavaThread "AWT-Shutdown" [_thread_blocked, id=24762, stack(0x00007f488804c000,0x00007f488814d000)]
+  0x00007f4814011860 JavaThread "Reference Cleaner" daemon [_thread_blocked, id=24763, stack(0x00007f47ef2f2000,0x00007f47ef3f3000)]
+
+Other Threads:
+  0x00007f48c42a5e20 VMThread "VM Thread" [stack: 0x00007f48ac898000,0x00007f48ac998000] [id=24700]
+  0x00007f48c43d6250 WatcherThread [stack: 0x00007f488b48d000,0x00007f488b58d000] [id=24711]
+  0x00007f48c406bb20 GCTaskThread "GC Thread#0" [stack: 0x00007f48c8c85000,0x00007f48c8d85000] [id=24695]
+  0x00007f488c008d20 GCTaskThread "GC Thread#1" [stack: 0x00007f488a509000,0x00007f488a609000] [id=24717]
+  0x00007f488c009870 GCTaskThread "GC Thread#2" [stack: 0x00007f488a408000,0x00007f488a508000] [id=24718]
+  0x00007f488c00a3c0 GCTaskThread "GC Thread#3" [stack: 0x00007f488a307000,0x00007f488a407000] [id=24719]
+  0x00007f488c00af10 GCTaskThread "GC Thread#4" [stack: 0x00007f488a206000,0x00007f488a306000] [id=24720]
+  0x00007f488c00baa0 GCTaskThread "GC Thread#5" [stack: 0x00007f488a105000,0x00007f488a205000] [id=24721]
+  0x00007f488c00c9e0 GCTaskThread "GC Thread#6" [stack: 0x00007f488a004000,0x00007f488a104000] [id=24722]
+  0x00007f488c00d980 GCTaskThread "GC Thread#7" [stack: 0x00007f4889f03000,0x00007f488a003000] [id=24723]
+  0x00007f488c00e920 GCTaskThread "GC Thread#8" [stack: 0x00007f4889e02000,0x00007f4889f02000] [id=24724]
+  0x00007f488c00f8c0 GCTaskThread "GC Thread#9" [stack: 0x00007f4889d01000,0x00007f4889e01000] [id=24725]
+  0x00007f488c010890 GCTaskThread "GC Thread#10" [stack: 0x00007f4889c00000,0x00007f4889d00000] [id=24726]
+  0x00007f488c011860 GCTaskThread "GC Thread#11" [stack: 0x00007f4889aff000,0x00007f4889bff000] [id=24727]
+  0x00007f48c40753c0 ConcurrentGCThread "G1 Main Marker" [stack: 0x00007f48c8b84000,0x00007f48c8c84000] [id=24696]
+  0x00007f48c4076510 ConcurrentGCThread "G1 Conc#0" [stack: 0x00007f48c8a83000,0x00007f48c8b83000] [id=24697]
+  0x00007f48a0000de0 ConcurrentGCThread "G1 Conc#1" [stack: 0x00007f4888816000,0x00007f4888916000] [id=24759]
+  0x00007f48a0001970 ConcurrentGCThread "G1 Conc#2" [stack: 0x00007f4888715000,0x00007f4888815000] [id=24760]
+  0x00007f48a0002530 ConcurrentGCThread "G1 Conc#3" [stack: 0x00007f4888614000,0x00007f4888714000] [id=24761]
+  0x00007f48c4211db0 ConcurrentGCThread "G1 Refine#0" [stack: 0x00007f48acc90000,0x00007f48acd90000] [id=24698]
+  0x00007f48c4212e40 ConcurrentGCThread "G1 Service" [stack: 0x00007f48acb8f000,0x00007f48acc8f000] [id=24699]
+
+Threads with active compile tasks:
+C2 CompilerThread0      395 1756   !   4       java.nio.ByteBuffer::getArray (121 bytes)
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f48c4023270] SystemDictionary_lock - owner thread: 0x00007f484801dfe0
+[0x00007f48c40252b0] Compile_lock - owner thread: 0x00007f48c42f04b0
+
+Heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) not mapped
+Compressed class space mapped at: 0x0000000100000000-0x0000000140000000, reserved size: 1073741824
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3, Narrow klass range: 0x140000000
+
+GC Precious Log:
+ CPUs: 20 total, 20 available
+ Memory: 31882M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (32-bit)
+ Heap Region Size: 1M
+ Heap Min Capacity: 8M
+ Heap Initial Capacity: 500M
+ Heap Max Capacity: 1G
+ Pre-touch: Disabled
+ Parallel Workers: 15
+ Concurrent Workers: 4
+ Concurrent Refinement Workers: 15
+ Periodic GC: Disabled
+
+Heap:
+ garbage-first heap   total 34816K, used 21008K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 17 young (17408K), 3 survivors (3072K)
+ Metaspace       used 26317K, committed 26560K, reserved 1114112K
+  class space    used 3033K, committed 3136K, reserved 1048576K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, OA=open archive, CA=closed archive, TAMS=top-at-mark-start (previous, next)
+|   0|0x00000000c0000000, 0x00000000c0100000, 0x00000000c0100000|100%| O|  |TAMS 0x00000000c007f400, 0x00000000c0000000| Untracked 
+|   1|0x00000000c0100000, 0x00000000c0200000, 0x00000000c0200000|100%| O|  |TAMS 0x00000000c0100000, 0x00000000c0100000| Untracked 
+|   2|0x00000000c0200000, 0x00000000c0300000, 0x00000000c0300000|100%| O|  |TAMS 0x00000000c0200000, 0x00000000c0200000| Untracked 
+|   3|0x00000000c0300000, 0x00000000c0400000, 0x00000000c0400000|100%| O|  |TAMS 0x00000000c0300000, 0x00000000c0300000| Untracked 
+|   4|0x00000000c0400000, 0x00000000c0484000, 0x00000000c0500000| 51%| O|  |TAMS 0x00000000c0400000, 0x00000000c0400000| Complete 
+|   5|0x00000000c0500000, 0x00000000c0500000, 0x00000000c0600000|  0%| F|  |TAMS 0x00000000c0500000, 0x00000000c0500000| Untracked 
+|   6|0x00000000c0600000, 0x00000000c0600000, 0x00000000c0700000|  0%| F|  |TAMS 0x00000000c0600000, 0x00000000c0600000| Untracked 
+|   7|0x00000000c0700000, 0x00000000c0700000, 0x00000000c0800000|  0%| F|  |TAMS 0x00000000c0700000, 0x00000000c0700000| Untracked 
+|   8|0x00000000c0800000, 0x00000000c0800000, 0x00000000c0900000|  0%| F|  |TAMS 0x00000000c0800000, 0x00000000c0800000| Untracked 
+|   9|0x00000000c0900000, 0x00000000c0900000, 0x00000000c0a00000|  0%| F|  |TAMS 0x00000000c0900000, 0x00000000c0900000| Untracked 
+|  10|0x00000000c0a00000, 0x00000000c0a00000, 0x00000000c0b00000|  0%| F|  |TAMS 0x00000000c0a00000, 0x00000000c0a00000| Untracked 
+|  11|0x00000000c0b00000, 0x00000000c0b00000, 0x00000000c0c00000|  0%| F|  |TAMS 0x00000000c0b00000, 0x00000000c0b00000| Untracked 
+|  12|0x00000000c0c00000, 0x00000000c0c00000, 0x00000000c0d00000|  0%| F|  |TAMS 0x00000000c0c00000, 0x00000000c0c00000| Untracked 
+|  13|0x00000000c0d00000, 0x00000000c0d00000, 0x00000000c0e00000|  0%| F|  |TAMS 0x00000000c0d00000, 0x00000000c0d00000| Untracked 
+|  14|0x00000000c0e00000, 0x00000000c0e00000, 0x00000000c0f00000|  0%| F|  |TAMS 0x00000000c0e00000, 0x00000000c0e00000| Untracked 
+|  15|0x00000000c0f00000, 0x00000000c0f00000, 0x00000000c1000000|  0%| F|  |TAMS 0x00000000c0f00000, 0x00000000c0f00000| Untracked 
+|  16|0x00000000c1000000, 0x00000000c1000000, 0x00000000c1100000|  0%| F|  |TAMS 0x00000000c1000000, 0x00000000c1000000| Untracked 
+|  17|0x00000000c1100000, 0x00000000c1169a78, 0x00000000c1200000| 41%| E|  |TAMS 0x00000000c1100000, 0x00000000c1100000| Complete 
+|  18|0x00000000c1200000, 0x00000000c1300000, 0x00000000c1300000|100%| E|CS|TAMS 0x00000000c1200000, 0x00000000c1200000| Complete 
+|  19|0x00000000c1300000, 0x00000000c1400000, 0x00000000c1400000|100%| E|CS|TAMS 0x00000000c1300000, 0x00000000c1300000| Complete 
+|  20|0x00000000c1400000, 0x00000000c1500000, 0x00000000c1500000|100%| E|CS|TAMS 0x00000000c1400000, 0x00000000c1400000| Complete 
+|  21|0x00000000c1500000, 0x00000000c1600000, 0x00000000c1600000|100%| E|CS|TAMS 0x00000000c1500000, 0x00000000c1500000| Complete 
+|  22|0x00000000c1600000, 0x00000000c1700000, 0x00000000c1700000|100%| E|CS|TAMS 0x00000000c1600000, 0x00000000c1600000| Complete 
+|  23|0x00000000c1700000, 0x00000000c1800000, 0x00000000c1800000|100%| E|CS|TAMS 0x00000000c1700000, 0x00000000c1700000| Complete 
+|  24|0x00000000c1800000, 0x00000000c1900000, 0x00000000c1900000|100%| E|CS|TAMS 0x00000000c1800000, 0x00000000c1800000| Complete 
+|  25|0x00000000c1900000, 0x00000000c1a00000, 0x00000000c1a00000|100%| E|CS|TAMS 0x00000000c1900000, 0x00000000c1900000| Complete 
+|  26|0x00000000c1a00000, 0x00000000c1b00000, 0x00000000c1b00000|100%| E|CS|TAMS 0x00000000c1a00000, 0x00000000c1a00000| Complete 
+|  27|0x00000000c1b00000, 0x00000000c1c00000, 0x00000000c1c00000|100%| E|CS|TAMS 0x00000000c1b00000, 0x00000000c1b00000| Complete 
+|  28|0x00000000c1c00000, 0x00000000c1d00000, 0x00000000c1d00000|100%| E|CS|TAMS 0x00000000c1c00000, 0x00000000c1c00000| Complete 
+| 488|0x00000000de800000, 0x00000000de900000, 0x00000000de900000|100%| S|CS|TAMS 0x00000000de800000, 0x00000000de800000| Complete 
+| 489|0x00000000de900000, 0x00000000dea00000, 0x00000000dea00000|100%| S|CS|TAMS 0x00000000de900000, 0x00000000de900000| Complete 
+| 490|0x00000000dea00000, 0x00000000deb00000, 0x00000000deb00000|100%| S|CS|TAMS 0x00000000dea00000, 0x00000000dea00000| Complete 
+| 498|0x00000000df200000, 0x00000000df300000, 0x00000000df300000|100%| E|CS|TAMS 0x00000000df200000, 0x00000000df200000| Complete 
+| 499|0x00000000df300000, 0x00000000df400000, 0x00000000df400000|100%| E|CS|TAMS 0x00000000df300000, 0x00000000df300000| Complete 
+
+Card table byte_map: [0x00007f48c9008000,0x00007f48c9208000] _byte_map_base: 0x00007f48c8a08000
+
+Marking Bits (Prev, Next): (CMBitMap*) 0x00007f48c406c730, (CMBitMap*) 0x00007f48c406c6f0
+ Prev Bits: [0x00007f48af295000, 0x00007f48b0295000)
+ Next Bits: [0x00007f48b0295000, 0x00007f48b1295000)
+
+Polling page: 0x00007f48cbd36000
+
+Metaspace:
+
+Usage:
+  Non-class:     22.74 MB used.
+      Class:      2.96 MB used.
+       Both:     25.70 MB used.
+
+Virtual space:
+  Non-class space:       64.00 MB reserved,      22.88 MB ( 36%) committed,  1 nodes.
+      Class space:        1.00 GB reserved,       3.06 MB ( <1%) committed,  1 nodes.
+             Both:        1.06 GB reserved,      25.94 MB (  2%) committed. 
+
+Chunk freelists:
+   Non-Class:  8.20 MB
+       Class:  12.89 MB
+        Both:  21.09 MB
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+Initial GC threshold: 21.00 MB
+Current GC threshold: 35.44 MB
+CDS: off
+MetaspaceReclaimPolicy: balanced
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 8192.
+ - virtual_space_node_default_size: 8388608.
+ - enlarge_chunks_in_place: 1.
+ - new_chunks_are_fully_committed: 0.
+ - uncommit_free_chunks: 1.
+ - use_allocation_guard: 0.
+ - handle_deallocations: 1.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 7.
+num_arena_births: 284.
+num_arena_deaths: 0.
+num_vsnodes_births: 2.
+num_vsnodes_deaths: 0.
+num_space_committed: 414.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 7.
+num_chunks_taken_from_freelist: 827.
+num_chunk_merges: 0.
+num_chunk_splits: 500.
+num_chunks_enlarged: 291.
+num_inconsistent_stats: 0.
+
+CodeHeap 'non-profiled nmethods': size=120036Kb used=617Kb max_used=617Kb free=119418Kb
+ bounds [0x00007f48b8d5c000, 0x00007f48b8fcc000, 0x00007f48c0295000]
+CodeHeap 'profiled nmethods': size=120032Kb used=2862Kb max_used=2862Kb free=117169Kb
+ bounds [0x00007f48b1295000, 0x00007f48b1565000, 0x00007f48b87cd000]
+CodeHeap 'non-nmethods': size=5692Kb used=1362Kb max_used=1383Kb free=4329Kb
+ bounds [0x00007f48b87cd000, 0x00007f48b8a3d000, 0x00007f48b8d5c000]
+ total_blobs=2554 nmethods=1838 adapters=629
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (20 events):
+Event: 0.361 Thread 0x00007f48c42f1c10 1840       2       java.lang.String$CaseInsensitiveComparator::compare (13 bytes)
+Event: 0.361 Thread 0x00007f48c42f1c10 nmethod 1840 0x00007f48b155d310 code [0x00007f48b155d4c0, 0x00007f48b155d640]
+Event: 0.361 Thread 0x00007f48c42f1c10 1841       2       java.lang.String$CaseInsensitiveComparator::compare (68 bytes)
+Event: 0.361 Thread 0x00007f48c42f1c10 nmethod 1841 0x00007f48b155d710 code [0x00007f48b155d900, 0x00007f48b155db30]
+Event: 0.361 Thread 0x00007f48c42f1c10 1844       2       noria.ui.core.FrameBar::<init> (309 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1844 0x00007f48b155dc90 code [0x00007f48b155df40, 0x00007f48b155f330]
+Event: 0.362 Thread 0x00007f48c42f1c10 1839       2       java.util.TreeMap::compare (32 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1839 0x00007f48b155f910 code [0x00007f48b155fae0, 0x00007f48b155fcb0]
+Event: 0.362 Thread 0x00007f48c42f1c10 1843       2       java.util.TreeMap::addEntryToEmptyMap (37 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1843 0x00007f48b155fd90 code [0x00007f48b155ff60, 0x00007f48b15602d0]
+Event: 0.362 Thread 0x00007f48c42f1c10 1831       1       sun.nio.fs.NativeBuffer::setOwner (6 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1831 0x00007f48b8df1010 code [0x00007f48b8df11a0, 0x00007f48b8df12b0]
+Event: 0.362 Thread 0x00007f48c42f1c10 1845       2       java.nio.file.Files::provider (10 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1845 0x00007f48b1560410 code [0x00007f48b15605a0, 0x00007f48b15606b0]
+Event: 0.362 Thread 0x00007f48c42f1c10 1847       2       java.nio.ByteBuffer::position (6 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1847 0x00007f48b1560810 code [0x00007f48b15609c0, 0x00007f48b1560ae0]
+Event: 0.362 Thread 0x00007f48c42f1c10 1846       1       io.opentelemetry.sdk.trace.SdkSpan::getSpanContext (5 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1846 0x00007f48b8df1610 code [0x00007f48b8df17a0, 0x00007f48b8df1870]
+Event: 0.362 Thread 0x00007f48c42f1c10 1848       1       java.util.logging.Level::intValue (5 bytes)
+Event: 0.362 Thread 0x00007f48c42f1c10 nmethod 1848 0x00007f48b8df1910 code [0x00007f48b8df1aa0, 0x00007f48b8df1b70]
+
+GC Heap History (4 events):
+Event: 0.275 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total 512000K, used 25600K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 25 young (25600K), 0 survivors (0K)
+ Metaspace       used 14775K, committed 15104K, reserved 1114112K
+  class space    used 1640K, committed 1792K, reserved 1048576K
+}
+Event: 0.278 GC heap after
+{Heap after GC invocations=1 (full 0):
+ garbage-first heap   total 512000K, used 4605K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 4 young (4096K), 4 survivors (4096K)
+ Metaspace       used 14775K, committed 15104K, reserved 1114112K
+  class space    used 1640K, committed 1792K, reserved 1048576K
+}
+Event: 0.325 GC heap before
+{Heap before GC invocations=1 (full 0):
+ garbage-first heap   total 512000K, used 11773K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 13 young (13312K), 4 survivors (4096K)
+ Metaspace       used 21234K, committed 21504K, reserved 1114112K
+  class space    used 2424K, committed 2560K, reserved 1048576K
+}
+Event: 0.327 GC heap after
+{Heap after GC invocations=2 (full 0):
+ garbage-first heap   total 512000K, used 7696K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 3 young (3072K), 3 survivors (3072K)
+ Metaspace       used 21234K, committed 21504K, reserved 1114112K
+  class space    used 2424K, committed 2560K, reserved 1048576K
+}
+
+Dll operation events (12 events):
+Event: 0.001 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+Event: 0.033 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+Event: 0.033 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjimage.so
+Event: 0.052 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnet.so
+Event: 0.134 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement.so
+Event: 0.134 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement_ext.so
+Event: 0.137 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libzip.so
+Event: 0.314 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libprefs.so
+Event: 0.328 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+Event: 0.331 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+Event: 0.340 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+Event: 0.343 Loaded shared library /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/skiko/libskiko-linux-x64.so
+
+Deoptimization events (20 events):
+Event: 0.350 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2d10
+Event: 0.350 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2218 mode 0
+Event: 0.352 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2d10
+Event: 0.352 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2218 mode 0
+Event: 0.355 Thread 0x00007f484801dfe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f4889afb7a0
+Event: 0.355 Thread 0x00007f484801dfe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f4889afacc0 mode 0
+Event: 0.356 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2c80
+Event: 0.356 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2188 mode 0
+Event: 0.357 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2c80
+Event: 0.357 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2188 mode 0
+Event: 0.358 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2c80
+Event: 0.358 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2188 mode 0
+Event: 0.359 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1542ff7 sp=0x00007f48899c2ba0
+Event: 0.359 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2038 mode 0
+Event: 0.359 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2c80
+Event: 0.359 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2188 mode 0
+Event: 0.360 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2c80
+Event: 0.360 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2188 mode 0
+Event: 0.361 Thread 0x00007f4848022fe0 DEOPT PACKING pc=0x00007f48b1532046 sp=0x00007f48899c2c80
+Event: 0.361 Thread 0x00007f4848022fe0 DEOPT UNPACKING pc=0x00007f48b8823e2f sp=0x00007f48899c2188 mode 0
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (20 events):
+Event: 0.212 Thread 0x00007f48c4027fd0 Exception <a 'java/lang/ClassNotFoundException'{0x00000000de069070}: javax/smartcardio/CardPermission> (0x00000000de069070) 
+thrown [src/hotspot/share/classfile/systemDictionary.cpp, line 256]
+Event: 0.213 Thread 0x00007f48c4027fd0 Exception <a 'java/io/FileNotFoundException'{0x00000000de076868}> (0x00000000de076868) 
+thrown [src/hotspot/share/prims/jni.cpp, line 517]
+Event: 0.220 Thread 0x00007f48c4027fd0 Implicit null exception at 0x00007f48b8d74758 to 0x00007f48b8d747e6
+Event: 0.227 Thread 0x00007f48c4027fd0 Exception <a 'sun/nio/fs/UnixException'{0x00000000ddf515b0}> (0x00000000ddf515b0) 
+thrown [src/hotspot/share/prims/jni.cpp, line 517]
+Event: 0.227 Thread 0x00007f48c4027fd0 Exception <a 'sun/nio/fs/UnixException'{0x00000000ddf52138}> (0x00000000ddf52138) 
+thrown [src/hotspot/share/prims/jni.cpp, line 517]
+Event: 0.233 Thread 0x00007f48c4027fd0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000dde547a0}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000000dde547a0) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.250 Thread 0x00007f48c4027fd0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000dddecec0}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000000dddecec0) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.250 Thread 0x00007f48c4027fd0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000dddf0ce0}: 'java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000000dddf0ce0) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.253 Thread 0x00007f48c4027fd0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000ddc18db8}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000000ddc18db8) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.279 Thread 0x00007f48c4954830 Exception <a 'java/lang/NoSuchMethodError'{0x00000000df308570}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, long, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000000df308570) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.279 Thread 0x00007f48c4954830 Exception <a 'java/lang/NoSuchMethodError'{0x00000000df30c508}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, long, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000000df30c508) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.289 Thread 0x00007f484801dfe0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000df21a1e8}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, int)'> (0x00000000df21a1e8) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.289 Thread 0x00007f484801dfe0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000df21e2f0}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, int)'> (0x00000000df21e2f0) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.289 Thread 0x00007f484801dfe0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000df2219f8}: 'java.lang.Object java.lang.invoke.Invokers$Holder.linkToTargetMethod(java.lang.Object, java.lang.Object, int, java.lang.Object)'> (0x00000000df2219f8) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.323 Thread 0x00007f4848027d70 Exception <a 'java/lang/ClassNotFoundException'{0x00000000dedc8790}: sun/awt/resources/spi/awtProvider> (0x00000000dedc8790) 
+thrown [src/hotspot/share/classfile/systemDictionary.cpp, line 256]
+Event: 0.331 Thread 0x00007f4848027d70 Exception <a 'java/io/FileNotFoundException'{0x00000000df2087f8}> (0x00000000df2087f8) 
+thrown [src/hotspot/share/prims/jni.cpp, line 517]
+Event: 0.331 Thread 0x00007f4848027d70 Exception <a 'java/io/FileNotFoundException'{0x00000000df209d58}> (0x00000000df209d58) 
+thrown [src/hotspot/share/prims/jni.cpp, line 517]
+Event: 0.333 Thread 0x00007f484801dfe0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000df2bd8f8}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeInterface(java.lang.Object, java.lang.Object)'> (0x00000000df2bd8f8) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+Event: 0.333 Thread 0x00007f484801dfe0 Exception <a 'java/lang/IncompatibleClassChangeError'{0x00000000df2c0de0}: Found class java.lang.Object, but interface was expected> (0x00000000df2c0de0) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 838]
+Event: 0.359 Thread 0x00007f484801dfe0 Exception <a 'java/lang/NoSuchMethodError'{0x00000000c1420e10}: 'long java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object)'> (0x00000000c1420e10) 
+thrown [src/hotspot/share/interpreter/linkResolver.cpp, line 770]
+
+VM Operations (20 events):
+Event: 0.296 Executing VM operation: HandshakeAllThreads
+Event: 0.296 Executing VM operation: HandshakeAllThreads done
+Event: 0.307 Executing VM operation: HandshakeAllThreads
+Event: 0.307 Executing VM operation: HandshakeAllThreads done
+Event: 0.325 Executing VM operation: CollectForMetadataAllocation
+Event: 0.327 Executing VM operation: CollectForMetadataAllocation done
+Event: 0.327 Executing VM operation: CollectForMetadataAllocation
+Event: 0.327 Executing VM operation: CollectForMetadataAllocation done
+Event: 0.327 Executing VM operation: CollectForMetadataAllocation
+Event: 0.327 Executing VM operation: CollectForMetadataAllocation done
+Event: 0.329 Executing VM operation: G1PauseRemark
+Event: 0.329 Executing VM operation: G1PauseRemark done
+Event: 0.330 Executing VM operation: G1PauseCleanup
+Event: 0.330 Executing VM operation: G1PauseCleanup done
+Event: 0.336 Executing VM operation: HandshakeAllThreads
+Event: 0.336 Executing VM operation: HandshakeAllThreads done
+Event: 0.341 Executing VM operation: HandshakeAllThreads
+Event: 0.341 Executing VM operation: HandshakeAllThreads done
+Event: 0.342 Executing VM operation: HandshakeAllThreads
+Event: 0.342 Executing VM operation: HandshakeAllThreads done
+
+Events (20 events):
+Event: 0.358 loading class java/util/PrimitiveIterator$OfInt done
+Event: 0.358 loading class jdk/internal/platform/CgroupSubsystemFactory$CgroupTypeResult done
+Event: 0.358 loading class jdk/internal/platform/cgroupv1/CgroupV1Subsystem
+Event: 0.358 loading class jdk/internal/platform/CgroupSubsystem
+Event: 0.358 loading class jdk/internal/platform/CgroupSubsystem done
+Event: 0.358 loading class jdk/internal/platform/CgroupV1Metrics
+Event: 0.359 loading class jdk/internal/platform/CgroupV1Metrics done
+Event: 0.359 loading class jdk/internal/platform/cgroupv1/CgroupV1Subsystem done
+Event: 0.359 loading class jdk/internal/platform/cgroupv1/CgroupV1SubsystemController
+Event: 0.359 loading class jdk/internal/platform/CgroupSubsystemController
+Event: 0.359 loading class jdk/internal/platform/CgroupSubsystemController done
+Event: 0.359 loading class jdk/internal/platform/cgroupv1/CgroupV1SubsystemController done
+Event: 0.359 loading class jdk/internal/platform/cgroupv1/CgroupV1MemorySubSystemController
+Event: 0.359 loading class jdk/internal/platform/cgroupv1/CgroupV1MemorySubSystemController done
+Event: 0.360 loading class jdk/internal/platform/CgroupV1MetricsImpl
+Event: 0.360 loading class jdk/internal/platform/CgroupV1MetricsImpl done
+Event: 0.362 loading class java/lang/Deprecated
+Event: 0.362 loading class java/lang/Deprecated done
+Event: 0.362 loading class sun/reflect/annotation/AnnotationType
+Event: 0.362 loading class sun/reflect/annotation/AnnotationType done
+
+
+Dynamic libraries:
+c0000000-c1d00000 rw-p 00000000 00:00 0 
+c1d00000-de800000 ---p 00000000 00:00 0 
+de800000-deb00000 rw-p 00000000 00:00 0 
+deb00000-df200000 ---p 00000000 00:00 0 
+df200000-df400000 rw-p 00000000 00:00 0 
+df400000-100000000 ---p 00000000 00:00 0 
+100000000-100020000 rw-p 00000000 00:00 0 
+100020000-100040000 rw-p 00000000 00:00 0 
+100040000-1000c0000 rw-p 00000000 00:00 0 
+1000c0000-100100000 rw-p 00000000 00:00 0 
+100100000-100140000 rw-p 00000000 00:00 0 
+100140000-100180000 rw-p 00000000 00:00 0 
+100180000-100240000 rw-p 00000000 00:00 0 
+100240000-1002b0000 rw-p 00000000 00:00 0 
+1002b0000-1002c0000 ---p 00000000 00:00 0 
+1002c0000-100320000 rw-p 00000000 00:00 0 
+100320000-140000000 ---p 00000000 00:00 0 
+5591b8464000-5591b8465000 r--p 00000000 103:06 9854970                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet
+5591b8465000-5591b8467000 r-xp 00001000 103:06 9854970                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet
+5591b8467000-5591b8468000 r--p 00003000 103:06 9854970                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet
+5591b8468000-5591b8469000 r--p 00003000 103:06 9854970                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet
+5591b8469000-5591b846a000 rw-p 00004000 103:06 9854970                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet
+5591b94a2000-5591b94eb000 rw-p 00000000 00:00 0                          [heap]
+7f47d0000000-7f47d0021000 rw-p 00000000 00:00 0 
+7f47d0021000-7f47d4000000 ---p 00000000 00:00 0 
+7f47d4000000-7f47d4021000 rw-p 00000000 00:00 0 
+7f47d4021000-7f47d8000000 ---p 00000000 00:00 0 
+7f47d8000000-7f47d8021000 rw-p 00000000 00:00 0 
+7f47d8021000-7f47dc000000 ---p 00000000 00:00 0 
+7f47dc000000-7f47dc021000 rw-p 00000000 00:00 0 
+7f47dc021000-7f47e0000000 ---p 00000000 00:00 0 
+7f47e1caf000-7f47e1f48000 rw-p 00000000 00:00 0 
+7f47e1f48000-7f47e1f53000 r--s 00000000 103:05 9176716                   /var/cache/fontconfig/ece5f5fe-8cec-4342-921a-f54881964741-le64.cache-7
+7f47e1f53000-7f47e1f59000 r--s 00000000 103:05 9176688                   /var/cache/fontconfig/cdb0c647-fd3c-46da-a8d6-b65349cf05ea-le64.cache-7
+7f47e1f59000-7f47e1f5a000 r--s 00000000 103:05 9176620                   /var/cache/fontconfig/6da69e95-6cb6-4184-b2b5-edef442a0500-le64.cache-7
+7f47e1f5a000-7f47e1f5e000 r--s 00000000 103:05 9189389                   /var/cache/fontconfig/35677f3d-a2ed-4a67-9f2e-397d5821374f-le64.cache-7
+7f47e1f5e000-7f47e1f62000 r--s 00000000 103:05 9187704                   /var/cache/fontconfig/b5be5026-0151-40a5-9706-3e26fa5b1f3c-le64.cache-7
+7f47e1f62000-7f47e1f78000 r--s 00000000 103:05 9176660                   /var/cache/fontconfig/a7f67baf-4d04-410b-b4c0-2f31c605d4d4-le64.cache-7
+7f47e1f78000-7f47e1f79000 r--s 00000000 103:05 9176678                   /var/cache/fontconfig/bcab9646-b864-4dbb-9ad5-09eb3fcbb08f-le64.cache-7
+7f47e1f79000-7f47e1f7a000 r--s 00000000 103:05 9176665                   /var/cache/fontconfig/b0476c63-692c-4746-abfb-7fe87b598dd5-le64.cache-7
+7f47e1f7a000-7f47e1f7c000 r--s 00000000 103:05 9176623                   /var/cache/fontconfig/726c9a6c-9a1e-4f1c-a6c1-4f22a626a375-le64.cache-7
+7f47e1f7c000-7f47e1f7d000 r--s 00000000 103:05 9176585                   /var/cache/fontconfig/4eb7989a-321f-405d-af95-2ea0e2fb1e92-le64.cache-7
+7f47e1f7d000-7f47e1f7f000 r--s 00000000 103:05 9176702                   /var/cache/fontconfig/d9ad68c6-a6e2-466e-87b6-c1ffcb04c116-le64.cache-7
+7f47e1f7f000-7f47e1f81000 r--s 00000000 103:05 9176545                   /var/cache/fontconfig/1b1c39d8-fba9-406d-920a-bcd523edca13-le64.cache-7
+7f47e1f81000-7f47e1f82000 r--s 00000000 103:05 9177352                   /var/cache/fontconfig/5f33e659-fd13-4920-baf6-98b10cec54c8-le64.cache-7
+7f47e1f82000-7f47e1f84000 r--s 00000000 103:05 9176559                   /var/cache/fontconfig/35822d8c-b519-4d06-8639-44bd4503d692-le64.cache-7
+7f47e1f84000-7f47e1f89000 r--s 00000000 103:05 9176687                   /var/cache/fontconfig/cb03565e-3ea8-4bc6-9ddb-648903ff6daa-le64.cache-7
+7f47e1f89000-7f47e1f8d000 r--s 00000000 103:05 9187702                   /var/cache/fontconfig/bdaebf57-634a-44c0-b6b1-cf81430d31d4-le64.cache-7
+7f47e1f8d000-7f47e1f8e000 r--s 00000000 103:05 9176553                   /var/cache/fontconfig/26c0fad9-783d-4389-a075-51a5924d9ac4-le64.cache-7
+7f47e1f8e000-7f47e1f8f000 r--s 00000000 103:05 9176653                   /var/cache/fontconfig/a3d96d84-7c7d-42da-af09-22c49c942096-le64.cache-7
+7f47e1f8f000-7f47e1f90000 r--s 00000000 103:05 9176569                   /var/cache/fontconfig/3fb6a00b-629e-4ac1-8d25-d1f1b88811cc-le64.cache-7
+7f47e1f90000-7f47e1f91000 r--s 00000000 103:05 9176654                   /var/cache/fontconfig/a4794193-059f-4e6b-8cc3-8435c7b39b3e-le64.cache-7
+7f47e1f91000-7f47e1f92000 r--s 00000000 103:05 9176624                   /var/cache/fontconfig/74428ab7-d740-4608-8737-caf1aef2ee10-le64.cache-7
+7f47e1f92000-7f47e1f93000 r--s 00000000 103:05 9176679                   /var/cache/fontconfig/c5afdb97-cac4-4390-b345-189a827196c2-le64.cache-7
+7f47e1f93000-7f47e1f94000 r--s 00000000 103:05 9176726                   /var/cache/fontconfig/f9d960da-f35e-4524-be33-973f0c1aacf1-le64.cache-7
+7f47e1f94000-7f47e1f95000 r--s 00000000 103:05 9176638                   /var/cache/fontconfig/88c462d0-18d6-475d-ae55-5d540fa7cb02-le64.cache-7
+7f47e1f95000-7f47e1f96000 r--s 00000000 103:05 9176584                   /var/cache/fontconfig/4dfc0e53-fba0-4d1f-b216-fbdb4d5d3f90-le64.cache-7
+7f47e1f96000-7f47e1f97000 r--s 00000000 103:05 9176651                   /var/cache/fontconfig/a3404fa7-971a-4d09-bf7f-dc1dbaaee5ba-le64.cache-7
+7f47e1f97000-7f47e1f9c000 r--s 00000000 103:05 9176689                   /var/cache/fontconfig/d2d0154a-b33a-4f7a-b11a-6d8e1326aeaf-le64.cache-7
+7f47e1f9c000-7f47e1fa3000 r--s 00000000 103:05 9176524                   /var/cache/fontconfig/029aee7d-a3c3-4657-a3c2-ba06918faaf3-le64.cache-7
+7f47e1fa3000-7f47e1fab000 r--s 00000000 103:05 9189258                   /var/cache/fontconfig/00156ba6-255f-4cbc-b694-2881f821f279-le64.cache-7
+7f47e1fab000-7f47e1fb1000 r--s 00000000 103:05 9176703                   /var/cache/fontconfig/da0b51da-d94d-4bad-acea-2b63e16ce2c0-le64.cache-7
+7f47e1fb1000-7f47e1fc4000 r--s 00000000 103:05 9176714                   /var/cache/fontconfig/e7d3d34f-32aa-4cfc-ac51-1060c66384de-le64.cache-7
+7f47e1fc4000-7f47e1fc5000 ---p 00000000 00:00 0 
+7f47e1fc5000-7f47e27c5000 rw-p 00000000 00:00 0 
+7f47e27c5000-7f47e27d1000 r--s 00000000 103:05 9175563                   /var/cache/fontconfig/aa24da71-5122-4d6a-acfd-e8481b498b50-le64.cache-7
+7f47e27d1000-7f47e292a000 rw-p 00000000 00:00 0 
+7f47e292a000-7f47e292b000 ---p 00000000 00:00 0 
+7f47e292b000-7f47e312b000 rw-p 00000000 00:00 0 
+7f47e312b000-7f47e312c000 ---p 00000000 00:00 0 
+7f47e312c000-7f47e392c000 rw-p 00000000 00:00 0 
+7f47e392c000-7f47e392f000 r--p 00000000 103:05 6315097                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f47e392f000-7f47e394b000 r-xp 00003000 103:05 6315097                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f47e394b000-7f47e394f000 r--p 0001f000 103:05 6315097                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f47e394f000-7f47e3950000 r--p 00022000 103:05 6315097                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f47e3950000-7f47e3951000 rw-p 00023000 103:05 6315097                   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7f47e3951000-7f47e39ed000 r--p 00000000 103:05 6299668                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32
+7f47e39ed000-7f47e3b1f000 r-xp 0009c000 103:05 6299668                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32
+7f47e3b1f000-7f47e3bac000 r--p 001ce000 103:05 6299668                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32
+7f47e3bac000-7f47e3bad000 ---p 0025b000 103:05 6299668                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32
+7f47e3bad000-7f47e3bb8000 r--p 0025b000 103:05 6299668                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32
+7f47e3bb8000-7f47e3bbb000 rw-p 00266000 103:05 6299668                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.32
+7f47e3bbb000-7f47e3bbf000 rw-p 00000000 00:00 0 
+7f47e3bbf000-7f47e3bc7000 r--p 00000000 103:05 6298641                   /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0
+7f47e3bc7000-7f47e3bda000 r-xp 00008000 103:05 6298641                   /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0
+7f47e3bda000-7f47e3bdf000 r--p 0001b000 103:05 6298641                   /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0
+7f47e3bdf000-7f47e3be0000 r--p 0001f000 103:05 6298641                   /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0
+7f47e3be0000-7f47e3be1000 rw-p 00020000 103:05 6298641                   /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0
+7f47e3be1000-7f47e3be2000 r--s 00000000 103:05 9176540                   /var/cache/fontconfig/1790d90a-ee79-4e29-b9f5-9eae804fa9f6-le64.cache-7
+7f47e3be2000-7f47e3be3000 r--s 00000000 103:05 9176564                   /var/cache/fontconfig/3afedb66-b3fa-4e70-874a-e14cb0b6c7c8-le64.cache-7
+7f47e3be3000-7f47e3be4000 r--s 00000000 103:05 9176696                   /var/cache/fontconfig/d5443d45-5589-4714-ab21-fa7383564abb-le64.cache-7
+7f47e3be4000-7f47e3be8000 r--s 00000000 103:05 9176578                   /var/cache/fontconfig/4a0982c4-7474-481d-bfb3-6836cf956c8e-le64.cache-7
+7f47e3be8000-7f47e3be9000 r--s 00000000 103:05 9176710                   /var/cache/fontconfig/e155b026-e0de-48f5-8601-7e24633f2fb4-le64.cache-7
+7f47e3be9000-7f47e3bea000 r--s 00000000 103:05 9176675                   /var/cache/fontconfig/bab4e65b-a5c5-4085-8a4a-ee3e5d92ee5f-le64.cache-7
+7f47e3bea000-7f47e3beb000 r--s 00000000 103:05 9176727                   /var/cache/fontconfig/fd103c6c-8a70-4827-a008-929edf1eb3a2-le64.cache-7
+7f47e3beb000-7f47e3bf7000 r--s 00000000 103:05 9176574                   /var/cache/fontconfig/48b30771-f3f0-4356-97d9-6c08b2dc2ddb-le64.cache-7
+7f47e3bf7000-7f47e3c05000 r--s 00000000 103:05 9176639                   /var/cache/fontconfig/8a2b53e5-31f4-40c4-882a-d4ef0c02bc4f-le64.cache-7
+7f47e3c05000-7f47e3c27000 r--s 00000000 103:05 9177088                   /var/cache/fontconfig/f190514b-8af1-483d-a372-d2fd03673f53-le64.cache-7
+7f47e3c27000-7f47e3c2b000 r--p 00000000 103:05 6950768                   /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+7f47e3c2b000-7f47e3c33000 r-xp 00004000 103:05 6950768                   /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+7f47e3c33000-7f47e3c36000 r--p 0000c000 103:05 6950768                   /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+7f47e3c36000-7f47e3c37000 ---p 0000f000 103:05 6950768                   /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+7f47e3c37000-7f47e3c38000 r--p 0000f000 103:05 6950768                   /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+7f47e3c38000-7f47e3c39000 rw-p 00010000 103:05 6950768                   /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+7f47e3c39000-7f47e3c3b000 r--p 00000000 103:05 6294049                   /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.9.0
+7f47e3c3b000-7f47e3ca0000 r-xp 00002000 103:05 6294049                   /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.9.0
+7f47e3ca0000-7f47e3cc8000 r--p 00067000 103:05 6294049                   /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.9.0
+7f47e3cc8000-7f47e3cc9000 r--p 0008e000 103:05 6294049                   /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.9.0
+7f47e3cc9000-7f47e3cca000 rw-p 0008f000 103:05 6294049                   /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.9.0
+7f47e3cca000-7f47e3cd4000 r--p 00000000 103:05 6292040                   /usr/lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7f47e3cd4000-7f47e3d0a000 r-xp 0000a000 103:05 6292040                   /usr/lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7f47e3d0a000-7f47e3d1a000 r--p 00040000 103:05 6292040                   /usr/lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7f47e3d1a000-7f47e3d1b000 ---p 00050000 103:05 6292040                   /usr/lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7f47e3d1b000-7f47e3d20000 r--p 00050000 103:05 6292040                   /usr/lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7f47e3d20000-7f47e3d21000 rw-p 00055000 103:05 6292040                   /usr/lib/x86_64-linux-gnu/libblkid.so.1.1.0
+7f47e3d21000-7f47e3d23000 r--p 00000000 103:05 6298585                   /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7f47e3d23000-7f47e3d74000 r-xp 00002000 103:05 6298585                   /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7f47e3d74000-7f47e3d92000 r--p 00053000 103:05 6298585                   /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7f47e3d92000-7f47e3d93000 r--p 00070000 103:05 6298585                   /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7f47e3d93000-7f47e3d94000 rw-p 00071000 103:05 6298585                   /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3
+7f47e3d94000-7f47e3d9a000 r--p 00000000 103:05 6298747                   /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f47e3d9a000-7f47e3db3000 r-xp 00006000 103:05 6298747                   /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f47e3db3000-7f47e3dba000 r--p 0001f000 103:05 6298747                   /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f47e3dba000-7f47e3dbb000 ---p 00026000 103:05 6298747                   /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f47e3dbb000-7f47e3dbc000 r--p 00026000 103:05 6298747                   /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f47e3dbc000-7f47e3dbd000 rw-p 00027000 103:05 6298747                   /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f47e3dbd000-7f47e3dbf000 rw-p 00000000 00:00 0 
+7f47e3dbf000-7f47e3dca000 r--p 00000000 103:05 6292370                   /usr/lib/x86_64-linux-gnu/libmount.so.1.1.0
+7f47e3dca000-7f47e3e08000 r-xp 0000b000 103:05 6292370                   /usr/lib/x86_64-linux-gnu/libmount.so.1.1.0
+7f47e3e08000-7f47e3e1b000 r--p 00049000 103:05 6292370                   /usr/lib/x86_64-linux-gnu/libmount.so.1.1.0
+7f47e3e1b000-7f47e3e1e000 r--p 0005b000 103:05 6292370                   /usr/lib/x86_64-linux-gnu/libmount.so.1.1.0
+7f47e3e1e000-7f47e3e1f000 rw-p 0005e000 103:05 6292370                   /usr/lib/x86_64-linux-gnu/libmount.so.1.1.0
+7f47e3e1f000-7f47e3e57000 r--p 00000000 103:05 6291822                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.6400.6
+7f47e3e57000-7f47e3f6a000 r-xp 00038000 103:05 6291822                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.6400.6
+7f47e3f6a000-7f47e3ff4000 r--p 0014b000 103:05 6291822                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.6400.6
+7f47e3ff4000-7f47e3ffd000 r--p 001d4000 103:05 6291822                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.6400.6
+7f47e3ffd000-7f47e3ffe000 rw-p 001dd000 103:05 6291822                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.6400.6
+7f47e3ffe000-7f47e4000000 rw-p 00000000 00:00 0 
+7f47e4000000-7f47e4021000 rw-p 00000000 00:00 0 
+7f47e4021000-7f47e8000000 ---p 00000000 00:00 0 
+7f47e8000000-7f47e8021000 rw-p 00000000 00:00 0 
+7f47e8021000-7f47ec000000 ---p 00000000 00:00 0 
+7f47ec000000-7f47ec001000 r--s 00000000 103:05 9176630                   /var/cache/fontconfig/7e8a4c2f-2eaa-4102-bdc1-597ec468798f-le64.cache-7
+7f47ec001000-7f47ec004000 r--s 00000000 103:05 9176641                   /var/cache/fontconfig/93729a75-4d8d-4350-8a81-ac7d1940c694-le64.cache-7
+7f47ec004000-7f47ec006000 r--s 00000000 103:05 9176550                   /var/cache/fontconfig/22d6f495-f5dc-4200-b1aa-d2a09cea7f0b-le64.cache-7
+7f47ec006000-7f47ec009000 r--s 00000000 103:05 9176598                   /var/cache/fontconfig/5771c223-6da2-4a68-8de9-4c936340c8ed-le64.cache-7
+7f47ec009000-7f47ec00a000 r--s 00000000 103:05 9176575                   /var/cache/fontconfig/496977a1-1d4c-4722-864a-883d36fdffd1-le64.cache-7
+7f47ec00a000-7f47ec00b000 r--s 00000000 103:05 9176599                   /var/cache/fontconfig/57aca18c-df76-4d9b-a1fb-b8febfff5cc8-le64.cache-7
+7f47ec00b000-7f47ec00c000 r--s 00000000 103:05 9176617                   /var/cache/fontconfig/6c28313d-9583-44cf-bee6-e05e65df1330-le64.cache-7
+7f47ec00c000-7f47ec00d000 r--s 00000000 103:05 9176640                   /var/cache/fontconfig/909523c7-1fee-4525-933c-485746184525-le64.cache-7
+7f47ec00d000-7f47ec010000 r--s 00000000 103:05 9176633                   /var/cache/fontconfig/804b30cc-2889-4ac0-976e-1465dd3eea7e-le64.cache-7
+7f47ec010000-7f47ec01e000 r--p 00000000 103:05 6291854                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6400.6
+7f47ec01e000-7f47ec054000 r-xp 0000e000 103:05 6291854                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6400.6
+7f47ec054000-7f47ec06c000 r--p 00044000 103:05 6291854                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6400.6
+7f47ec06c000-7f47ec06f000 r--p 0005b000 103:05 6291854                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6400.6
+7f47ec06f000-7f47ec070000 rw-p 0005e000 103:05 6291854                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.6400.6
+7f47ec070000-7f47ec08c000 r--p 00000000 103:05 6291831                   /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6400.6
+7f47ec08c000-7f47ec111000 r-xp 0001c000 103:05 6291831                   /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6400.6
+7f47ec111000-7f47ec197000 r--p 000a1000 103:05 6291831                   /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6400.6
+7f47ec197000-7f47ec198000 r--p 00126000 103:05 6291831                   /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6400.6
+7f47ec198000-7f47ec199000 rw-p 00127000 103:05 6291831                   /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6400.6
+7f47ec199000-7f47ec19a000 rw-p 00000000 00:00 0 
+7f47ec19a000-7f47ec224000 r--s 00000000 103:06 9854357                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/4d63df80d39e5977b9976c37f4ec87614fa7be23e950ef621205026d954febc5/bifurcan-0.2.0-alpha6.jar
+7f47ec224000-7f47ed2e3000 r--s 00000000 103:06 9854167                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/df083fa279a0756e06e56b2e135f4749a93c2f2eb6fb3aed211b4a600c88ec18/fleet.noria.ui-1.31.107.jar
+7f47ed2e3000-7f47ed3c3000 r--s 00000000 103:06 9854669                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/dd1d4e90c77a68bb1b7066939ddb4ebcff3cb887534e4a8630e56e5a34172205/fleet.noria.cells-1.31.107.jar
+7f47ed3c3000-7f47ed3c6000 r--p 00000000 103:05 6297522                   /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+7f47ed3c6000-7f47ed3e1000 r-xp 00003000 103:05 6297522                   /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+7f47ed3e1000-7f47ed3e5000 r--p 0001e000 103:05 6297522                   /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+7f47ed3e5000-7f47ed3e6000 r--p 00021000 103:05 6297522                   /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+7f47ed3e6000-7f47ed3e7000 rw-p 00022000 103:05 6297522                   /usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+7f47ed3e7000-7f47ed3f7000 rw-p 00000000 00:00 0 
+7f47ed3f7000-7f47ed437000 r--p 00000000 103:05 6297527                   /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0
+7f47ed437000-7f47ed476000 r-xp 00040000 103:05 6297527                   /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0
+7f47ed476000-7f47ed48a000 r--p 0007f000 103:05 6297527                   /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0
+7f47ed48a000-7f47ed4a6000 r--p 00092000 103:05 6297527                   /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0
+7f47ed4a6000-7f47ed4a7000 rw-p 000ae000 103:05 6297527                   /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0
+7f47ed4a7000-7f47ed4af000 rw-p 00000000 00:00 0 
+7f47ed4af000-7f47ed4f2000 r--p 00000000 103:05 6297516                   /usr/lib/x86_64-linux-gnu/libGL.so.1.7.0
+7f47ed4f2000-7f47ed512000 r-xp 00043000 103:05 6297516                   /usr/lib/x86_64-linux-gnu/libGL.so.1.7.0
+7f47ed512000-7f47ed527000 r--p 00063000 103:05 6297516                   /usr/lib/x86_64-linux-gnu/libGL.so.1.7.0
+7f47ed527000-7f47ed535000 r--p 00077000 103:05 6297516                   /usr/lib/x86_64-linux-gnu/libGL.so.1.7.0
+7f47ed535000-7f47ed536000 rw-p 00085000 103:05 6297516                   /usr/lib/x86_64-linux-gnu/libGL.so.1.7.0
+7f47ed536000-7f47ed537000 rw-p 00000000 00:00 0 
+7f47ed537000-7f47ed538000 r--s 00000000 103:05 9176670                   /var/cache/fontconfig/b7c4be9d-106d-451f-927e-4d4544f2eefc-le64.cache-7
+7f47ed538000-7f47ed561000 r--p 00000000 103:05 7733376                   /usr/share/glib-2.0/schemas/gschemas.compiled
+7f47ed561000-7f47ed57d000 r--p 00000000 103:05 8528964                   /usr/share/locale-langpack/zh_CN/LC_MESSAGES/glib20.mo
+7f47ed57d000-7f47eee97000 r-xp 00000000 103:06 9854050                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/skiko/libskiko-linux-x64.so
+7f47eee97000-7f47ef096000 ---p 0191a000 103:06 9854050                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/skiko/libskiko-linux-x64.so
+7f47ef096000-7f47ef0d4000 r--p 01919000 103:06 9854050                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/skiko/libskiko-linux-x64.so
+7f47ef0d4000-7f47ef0d7000 rw-p 01957000 103:06 9854050                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/skiko/libskiko-linux-x64.so
+7f47ef0d7000-7f47ef0e3000 rw-p 00000000 00:00 0 
+7f47ef0e3000-7f47ef0e9000 r--p 00000000 103:06 9853625                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+7f47ef0e9000-7f47ef2a1000 r-xp 00006000 103:06 9853625                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+7f47ef2a1000-7f47ef2ed000 r--p 001be000 103:06 9853625                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+7f47ef2ed000-7f47ef2ee000 ---p 0020a000 103:06 9853625                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+7f47ef2ee000-7f47ef2f0000 r--p 0020a000 103:06 9853625                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+7f47ef2f0000-7f47ef2f1000 rw-p 0020c000 103:06 9853625                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libfontmanager.so
+7f47ef2f1000-7f47ef2f2000 rw-p 00000000 00:00 0 
+7f47ef2f2000-7f47ef2f6000 ---p 00000000 00:00 0 
+7f47ef2f6000-7f47ef3f3000 rw-p 00000000 00:00 0 
+7f47ef3f3000-7f47efbf0000 r--s 00000000 103:06 9854565                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/6e69119cc95e642da12dcb0043589137bc7b36ba11ff3299598aaa510b8f0c03/bcprov-jdk18on-1.77.jar
+7f47efbf0000-7f47efbf5000 r-xp 00000000 103:05 6297591                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f47efbf5000-7f47efdf4000 ---p 00005000 103:05 6297591                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f47efdf4000-7f47efdf5000 r--p 00004000 103:05 6297591                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f47efdf5000-7f47efdf6000 rw-p 00005000 103:05 6297591                   /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f47efdf6000-7f47efdff000 r-xp 00000000 103:05 6297585                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f47efdff000-7f47efffe000 ---p 00009000 103:05 6297585                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f47efffe000-7f47effff000 r--p 00008000 103:05 6297585                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f47effff000-7f47f0000000 rw-p 00009000 103:05 6297585                   /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f47f0000000-7f47f0021000 rw-p 00000000 00:00 0 
+7f47f0021000-7f47f4000000 ---p 00000000 00:00 0 
+7f47f4000000-7f47f4021000 rw-p 00000000 00:00 0 
+7f47f4021000-7f47f8000000 ---p 00000000 00:00 0 
+7f47f8000000-7f47f8021000 rw-p 00000000 00:00 0 
+7f47f8021000-7f47fc000000 ---p 00000000 00:00 0 
+7f47fc000000-7f47fc021000 rw-p 00000000 00:00 0 
+7f47fc021000-7f4800000000 ---p 00000000 00:00 0 
+7f4800000000-7f4800021000 rw-p 00000000 00:00 0 
+7f4800021000-7f4804000000 ---p 00000000 00:00 0 
+7f4804000000-7f4804021000 rw-p 00000000 00:00 0 
+7f4804021000-7f4808000000 ---p 00000000 00:00 0 
+7f4808000000-7f4808021000 rw-p 00000000 00:00 0 
+7f4808021000-7f480c000000 ---p 00000000 00:00 0 
+7f480c000000-7f480c021000 rw-p 00000000 00:00 0 
+7f480c021000-7f4810000000 ---p 00000000 00:00 0 
+7f4810000000-7f481016f000 rw-p 00000000 00:00 0 
+7f481016f000-7f4814000000 ---p 00000000 00:00 0 
+7f4814000000-7f48140f7000 rw-p 00000000 00:00 0 
+7f48140f7000-7f4818000000 ---p 00000000 00:00 0 
+7f4818000000-7f48180b7000 rw-p 00000000 00:00 0 
+7f48180b7000-7f481c000000 ---p 00000000 00:00 0 
+7f481c000000-7f481c09d000 rw-p 00000000 00:00 0 
+7f481c09d000-7f4820000000 ---p 00000000 00:00 0 
+7f4820000000-7f4820021000 rw-p 00000000 00:00 0 
+7f4820021000-7f4824000000 ---p 00000000 00:00 0 
+7f4824000000-7f4824021000 rw-p 00000000 00:00 0 
+7f4824021000-7f4828000000 ---p 00000000 00:00 0 
+7f4828000000-7f4828021000 rw-p 00000000 00:00 0 
+7f4828021000-7f482c000000 ---p 00000000 00:00 0 
+7f482c000000-7f482c021000 rw-p 00000000 00:00 0 
+7f482c021000-7f4830000000 ---p 00000000 00:00 0 
+7f4830000000-7f4830021000 rw-p 00000000 00:00 0 
+7f4830021000-7f4834000000 ---p 00000000 00:00 0 
+7f4834000000-7f4834021000 rw-p 00000000 00:00 0 
+7f4834021000-7f4838000000 ---p 00000000 00:00 0 
+7f4838000000-7f4838021000 rw-p 00000000 00:00 0 
+7f4838021000-7f483c000000 ---p 00000000 00:00 0 
+7f483c000000-7f483c021000 rw-p 00000000 00:00 0 
+7f483c021000-7f4840000000 ---p 00000000 00:00 0 
+7f4840000000-7f4840021000 rw-p 00000000 00:00 0 
+7f4840021000-7f4844000000 ---p 00000000 00:00 0 
+7f4844000000-7f4844021000 rw-p 00000000 00:00 0 
+7f4844021000-7f4848000000 ---p 00000000 00:00 0 
+7f4848000000-7f48480e9000 rw-p 00000000 00:00 0 
+7f48480e9000-7f484c000000 ---p 00000000 00:00 0 
+7f484c000000-7f484c021000 rw-p 00000000 00:00 0 
+7f484c021000-7f4850000000 ---p 00000000 00:00 0 
+7f4850000000-7f4850021000 rw-p 00000000 00:00 0 
+7f4850021000-7f4854000000 ---p 00000000 00:00 0 
+7f4854000000-7f485411e000 rw-p 00000000 00:00 0 
+7f485411e000-7f4858000000 ---p 00000000 00:00 0 
+7f4858000000-7f4858021000 rw-p 00000000 00:00 0 
+7f4858021000-7f485c000000 ---p 00000000 00:00 0 
+7f485c000000-7f485c021000 rw-p 00000000 00:00 0 
+7f485c021000-7f4860000000 ---p 00000000 00:00 0 
+7f4860000000-7f4860021000 rw-p 00000000 00:00 0 
+7f4860021000-7f4864000000 ---p 00000000 00:00 0 
+7f4864000000-7f4864021000 rw-p 00000000 00:00 0 
+7f4864021000-7f4868000000 ---p 00000000 00:00 0 
+7f4868000000-7f4868021000 rw-p 00000000 00:00 0 
+7f4868021000-7f486c000000 ---p 00000000 00:00 0 
+7f486c000000-7f486c021000 rw-p 00000000 00:00 0 
+7f486c021000-7f4870000000 ---p 00000000 00:00 0 
+7f4870000000-7f48707a2000 rw-p 00000000 00:00 0 
+7f48707a2000-7f4874000000 ---p 00000000 00:00 0 
+7f4874000000-7f4874516000 rw-p 00000000 00:00 0 
+7f4874516000-7f4878000000 ---p 00000000 00:00 0 
+7f4878000000-7f4878021000 rw-p 00000000 00:00 0 
+7f4878021000-7f487c000000 ---p 00000000 00:00 0 
+7f487c000000-7f487c021000 rw-p 00000000 00:00 0 
+7f487c021000-7f4880000000 ---p 00000000 00:00 0 
+7f4880000000-7f4880021000 rw-p 00000000 00:00 0 
+7f4880021000-7f4884000000 ---p 00000000 00:00 0 
+7f4884000000-7f4884021000 rw-p 00000000 00:00 0 
+7f4884021000-7f4888000000 ---p 00000000 00:00 0 
+7f4888000000-7f4888001000 r--s 00000000 103:05 9176629                   /var/cache/fontconfig/7bb2bd30-4191-48ad-9808-0deb0d7f0f06-le64.cache-7
+7f4888001000-7f4888004000 r--s 00000000 103:05 9176661                   /var/cache/fontconfig/a95280b7-079a-4921-9abe-72e790a3e0bc-le64.cache-7
+7f4888004000-7f4888008000 r--p 00000000 103:05 6293700                   /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f4888008000-7f4888018000 r-xp 00004000 103:05 6293700                   /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f4888018000-7f488801c000 r--p 00014000 103:05 6293700                   /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f488801c000-7f488801d000 r--p 00017000 103:05 6293700                   /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f488801d000-7f488801e000 rw-p 00018000 103:05 6293700                   /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f488801e000-7f4888020000 rw-p 00000000 00:00 0 
+7f4888020000-7f4888022000 r--p 00000000 103:05 6297583                   /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+7f4888022000-7f4888029000 r-xp 00002000 103:05 6297583                   /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+7f4888029000-7f488802b000 r--p 00009000 103:05 6297583                   /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+7f488802b000-7f488802c000 r--p 0000a000 103:05 6297583                   /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+7f488802c000-7f488802d000 rw-p 0000b000 103:05 6297583                   /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+7f488802d000-7f488804c000 r--s 00000000 103:06 9854777                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/8aa01ec5a32241793433728760ffe1930aa6f13b3d1cbe965762e843c7b3a4b8/scheme-76.jar
+7f488804c000-7f4888050000 ---p 00000000 00:00 0 
+7f4888050000-7f488814d000 rw-p 00000000 00:00 0 
+7f488814d000-7f4888151000 r--p 00000000 103:05 6297719                   /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7f4888151000-7f4888160000 r-xp 00004000 103:05 6297719                   /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7f4888160000-7f4888163000 r--p 00013000 103:05 6297719                   /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7f4888163000-7f4888164000 ---p 00016000 103:05 6297719                   /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7f4888164000-7f4888165000 r--p 00016000 103:05 6297719                   /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7f4888165000-7f4888166000 rw-p 00017000 103:05 6297719                   /usr/lib/x86_64-linux-gnu/libbsd.so.0.10.0
+7f4888166000-7f4888167000 rw-p 00000000 00:00 0 
+7f4888167000-7f4888169000 r--p 00000000 103:05 6297563                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f4888169000-7f488816b000 r-xp 00002000 103:05 6297563                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f488816b000-7f488816d000 r--p 00004000 103:05 6297563                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f488816d000-7f488816e000 r--p 00005000 103:05 6297563                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f488816e000-7f488816f000 rw-p 00006000 103:05 6297563                   /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f488816f000-7f4888170000 r--p 00000000 103:05 6297552                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f4888170000-7f4888172000 r-xp 00001000 103:05 6297552                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f4888172000-7f4888173000 r--p 00003000 103:05 6297552                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f4888173000-7f4888174000 r--p 00003000 103:05 6297552                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f4888174000-7f4888175000 rw-p 00004000 103:05 6297552                   /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f4888175000-7f4888180000 r--p 00000000 103:05 6299042                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f4888180000-7f4888194000 r-xp 0000b000 103:05 6299042                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f4888194000-7f488819d000 r--p 0001f000 103:05 6299042                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f488819d000-7f488819e000 r--p 00027000 103:05 6299042                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f488819e000-7f488819f000 rw-p 00028000 103:05 6299042                   /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f488819f000-7f48881a1000 r--p 00000000 103:05 6297573                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f48881a1000-7f48881ac000 r-xp 00002000 103:05 6297573                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f48881ac000-7f48881af000 r--p 0000d000 103:05 6297573                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f48881af000-7f48881b0000 r--p 0000f000 103:05 6297573                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f48881b0000-7f48881b1000 rw-p 00010000 103:05 6297573                   /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f48881b1000-7f48881c9000 r--p 00000000 103:05 6293921                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f48881c9000-7f4888254000 r-xp 00018000 103:05 6293921                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f4888254000-7f48882e8000 r--p 000a3000 103:05 6293921                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f48882e8000-7f48882e9000 ---p 00137000 103:05 6293921                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f48882e9000-7f48882ea000 r--p 00137000 103:05 6293921                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f48882ea000-7f48882ee000 rw-p 00138000 103:05 6293921                   /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f48882ee000-7f48882f2000 r--p 00000000 103:05 6297565                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f48882f2000-7f48882fd000 r-xp 00004000 103:05 6297565                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f48882fd000-7f4888301000 r--p 0000f000 103:05 6297565                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f4888301000-7f4888302000 r--p 00012000 103:05 6297565                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f4888302000-7f4888303000 rw-p 00013000 103:05 6297565                   /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f4888303000-7f4888312000 r--p 00000000 103:06 9853663                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+7f4888312000-7f4888352000 r-xp 0000f000 103:06 9853663                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+7f4888352000-7f4888364000 r--p 0004f000 103:06 9853663                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+7f4888364000-7f4888365000 ---p 00061000 103:06 9853663                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+7f4888365000-7f4888366000 r--p 00061000 103:06 9853663                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+7f4888366000-7f4888368000 rw-p 00062000 103:06 9853663                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt_xawt.so
+7f4888368000-7f488836a000 rw-p 00000000 00:00 0 
+7f488836a000-7f488836f000 r--p 00000000 103:05 6298623                   /usr/lib/x86_64-linux-gnu/libpng16.so.16.37.0
+7f488836f000-7f4888394000 r-xp 00005000 103:05 6298623                   /usr/lib/x86_64-linux-gnu/libpng16.so.16.37.0
+7f4888394000-7f48883a0000 r--p 0002a000 103:05 6298623                   /usr/lib/x86_64-linux-gnu/libpng16.so.16.37.0
+7f48883a0000-7f48883a1000 r--p 00035000 103:05 6298623                   /usr/lib/x86_64-linux-gnu/libpng16.so.16.37.0
+7f48883a1000-7f48883a2000 rw-p 00036000 103:05 6298623                   /usr/lib/x86_64-linux-gnu/libpng16.so.16.37.0
+7f48883a2000-7f48883a4000 r--p 00000000 103:05 6292099                   /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f48883a4000-7f48883a8000 r-xp 00002000 103:05 6292099                   /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f48883a8000-7f48883a9000 r--p 00006000 103:05 6292099                   /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f48883a9000-7f48883aa000 r--p 00006000 103:05 6292099                   /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f48883aa000-7f48883ab000 rw-p 00007000 103:05 6292099                   /usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0
+7f48883ab000-7f48883af000 r--p 00000000 103:05 6291990                   /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7f48883af000-7f48883cb000 r-xp 00004000 103:05 6291990                   /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7f48883cb000-7f48883d5000 r--p 00020000 103:05 6291990                   /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7f48883d5000-7f48883d6000 ---p 0002a000 103:05 6291990                   /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7f48883d6000-7f48883d8000 r--p 0002a000 103:05 6291990                   /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7f48883d8000-7f48883d9000 rw-p 0002c000 103:05 6291990                   /usr/lib/x86_64-linux-gnu/libexpat.so.1.6.11
+7f48883d9000-7f48883e5000 r--p 00000000 103:05 6293519                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.17.1
+7f48883e5000-7f4888465000 r-xp 0000c000 103:05 6293519                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.17.1
+7f4888465000-7f488848f000 r--p 0008c000 103:05 6293519                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.17.1
+7f488848f000-7f4888490000 ---p 000b6000 103:05 6293519                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.17.1
+7f4888490000-7f4888497000 r--p 000b6000 103:05 6293519                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.17.1
+7f4888497000-7f4888498000 rw-p 000bd000 103:05 6293519                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.17.1
+7f4888498000-7f488849f000 r--p 00000000 103:05 6297971                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+7f488849f000-7f48884c4000 r-xp 00007000 103:05 6297971                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+7f48884c4000-7f48884dc000 r--p 0002c000 103:05 6297971                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+7f48884dc000-7f48884de000 r--p 00043000 103:05 6297971                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+7f48884de000-7f48884df000 rw-p 00045000 103:05 6297971                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+7f48884df000-7f48884e4000 r--p 00000000 103:06 7930042                   /home/yansu/.config/dconf/user
+7f48884e4000-7f48884e5000 r--p 00000000 103:05 6291853                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.6400.6
+7f48884e5000-7f48884e7000 r-xp 00001000 103:05 6291853                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.6400.6
+7f48884e7000-7f48884e8000 r--p 00003000 103:05 6291853                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.6400.6
+7f48884e8000-7f48884e9000 r--p 00003000 103:05 6291853                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.6400.6
+7f48884e9000-7f48884ea000 rw-p 00004000 103:05 6291853                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.6400.6
+7f48884ea000-7f48884fa000 r--s 00000000 103:06 9854787                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/8f431d686f42f9f83b40407ca9bdf873ed3a5ee85cd39d51ee34f7654412a740/model-76.jar
+7f48884fa000-7f48884fb000 r--p 00000000 103:05 6297575                   /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+7f48884fb000-7f48884fc000 r-xp 00001000 103:05 6297575                   /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+7f48884fc000-7f48884fd000 r--p 00002000 103:05 6297575                   /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+7f48884fd000-7f48884fe000 r--p 00002000 103:05 6297575                   /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+7f48884fe000-7f48884ff000 rw-p 00003000 103:05 6297575                   /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+7f48884ff000-7f4888501000 r--p 00000000 103:05 6297961                   /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7f4888501000-7f4888507000 r-xp 00002000 103:05 6297961                   /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7f4888507000-7f4888508000 r--p 00008000 103:05 6297961                   /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7f4888508000-7f4888509000 ---p 00009000 103:05 6297961                   /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7f4888509000-7f488850a000 r--p 00009000 103:05 6297961                   /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7f488850a000-7f488850b000 rw-p 0000a000 103:05 6297961                   /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+7f488850b000-7f4888510000 r--p 00000000 103:05 6297192                   /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7f4888510000-7f4888516000 r-xp 00005000 103:05 6297192                   /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7f4888516000-7f4888519000 r--p 0000b000 103:05 6297192                   /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7f4888519000-7f488851b000 r--p 0000d000 103:05 6297192                   /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7f488851b000-7f488851c000 rw-p 0000f000 103:05 6297192                   /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+7f488851c000-7f4888525000 r--s 00000000 103:06 9854869                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/c5237f2da868f99cb60651178f2fdf53300f598aca4bb830123df82609d270e4/jvm-native-trusted-roots-1.0.21.jar
+7f4888525000-7f4888550000 r--p 00000000 103:06 9853922                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+7f4888550000-7f48885d4000 r-xp 0002b000 103:06 9853922                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+7f48885d4000-7f48885e1000 r--p 000af000 103:06 9853922                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+7f48885e1000-7f48885e2000 ---p 000bc000 103:06 9853922                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+7f48885e2000-7f48885e3000 r--p 000bc000 103:06 9853922                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+7f48885e3000-7f48885ee000 rw-p 000bd000 103:06 9853922                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libawt.so
+7f48885ee000-7f4888613000 rw-p 00000000 00:00 0 
+7f4888613000-7f4888614000 ---p 00000000 00:00 0 
+7f4888614000-7f4888714000 rw-p 00000000 00:00 0 
+7f4888714000-7f4888715000 ---p 00000000 00:00 0 
+7f4888715000-7f4888815000 rw-p 00000000 00:00 0 
+7f4888815000-7f4888816000 ---p 00000000 00:00 0 
+7f4888816000-7f4888916000 rw-p 00000000 00:00 0 
+7f4888916000-7f4888952000 r--s 00000000 103:06 9854857                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/a6f6423a7ac22d8ab9e0bdb0468a7f5f7d1c700a2807ed86432aaf0363015580/kotlinx-collections-immutable-jvm-0.3.7.jar
+7f4888952000-7f4888956000 ---p 00000000 00:00 0 
+7f4888956000-7f4888a53000 rw-p 00000000 00:00 0 
+7f4888a53000-7f4888a57000 ---p 00000000 00:00 0 
+7f4888a57000-7f4888b54000 rw-p 00000000 00:00 0 
+7f4888b54000-7f4888b58000 ---p 00000000 00:00 0 
+7f4888b58000-7f4888c55000 rw-p 00000000 00:00 0 
+7f4888c55000-7f4888d82000 r--s 00000000 103:06 9854759                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/6dd3870586caa681b5015c43dc12818398ffba91910f95c9b147efe0b3890f8c/skiko-awt-0.7.93.jar
+7f4888d82000-7f4888dcc000 r--s 00000000 103:06 9854365                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/18d1a33a23413d51e446a2e7717b5f46ed78e4a2ea54c4a27982921a5b8cbb0e/fleet.noria.windowManagement.api-1.31.107.jar
+7f4888dcc000-7f4888f0d000 r--s 00000000 103:06 9854165                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/9c3873499946eb495ddec5929d35f5790dca7dbf27875ecece696f7065c28425/fleet.noria.windowManagement.impl-1.31.107.jar
+7f4888f0d000-7f4888f11000 ---p 00000000 00:00 0 
+7f4888f11000-7f488900e000 rw-p 00000000 00:00 0 
+7f488900e000-7f488900f000 r--p 00000000 103:06 9853648                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libprefs.so
+7f488900f000-7f4889010000 r-xp 00001000 103:06 9853648                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libprefs.so
+7f4889010000-7f4889011000 r--p 00002000 103:06 9853648                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libprefs.so
+7f4889011000-7f4889012000 r--p 00002000 103:06 9853648                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libprefs.so
+7f4889012000-7f4889013000 rw-p 00000000 00:00 0 
+7f4889013000-7f488901e000 r--s 00000000 103:06 9854659                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/d91a44677c74896b9bedc8902d81bd5f6a63974079dfb08223e380239f8de1ff/anonymization-60.jar
+7f488901e000-7f4889022000 r--s 00000000 103:06 9854487                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/7353237f0ab5358d81fc3e417cbfb7f280f316bc59b5c574ab54553104b5f13d/fleet.reporting.fus.api-1.31.107.jar
+7f4889022000-7f48890bc000 r--s 00000000 103:06 9854471                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/815268e714c61af35e066059fc082d6db2c82b16e57bf0c3b22329088e28e696/fleet.reporting.fus.impl-1.31.107.jar
+7f48890bc000-7f48890ef000 r--s 00000000 103:06 9854703                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/d5a17a78ed2873e426a00bc85144098470fced0d04cda322fb48a514b8d6f7fb/ktor-network-tls-jvm-2.3.8.jar
+7f48890ef000-7f4889110000 r--s 00000000 103:06 9854345                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/101472fab7f89d6154ae6f91294efe770e9fefb782caece03310142f55085182/ktor-client-cio-jvm-2.3.8.jar
+7f4889110000-7f48891dd000 r--s 00000000 103:06 9854347                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/f7adb3742fc6885d9ed211bd4cbe2bcb7b23d8f995501c352fdd2fd6a98f7a69/ktor-client-core-jvm-2.3.8.jar
+7f48891dd000-7f48891e1000 ---p 00000000 00:00 0 
+7f48891e1000-7f48892de000 rw-p 00000000 00:00 0 
+7f48892de000-7f48892e2000 ---p 00000000 00:00 0 
+7f48892e2000-7f4889300000 rw-p 00000000 00:00 0 
+7f4889300000-7f48894cb000 r--s 00000000 103:06 9854877                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/3a4b5c008deee746be7d0a95c42e6a78524b2aa911a83054eb95284b38a8cdc6/jna-5.14.0.jar
+7f48894cb000-7f488961a000 r--s 00000000 103:06 9854725                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/5d093bc369bc9635ad309c8be702dd7c8969f5d6c8099c1aa14735564d81559b/jna-platform-5.14.0.jar
+7f488961a000-7f488961e000 ---p 00000000 00:00 0 
+7f488961e000-7f488971b000 rw-p 00000000 00:00 0 
+7f488971b000-7f4889782000 r--s 00000000 103:06 9854221                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/0398aeee818d58fec483cbdfcac1b4651fe4f0d5b0b42e905fc7cad8d63d9da3/kotlinx-serialization-core-jvm-1.6.3.jar
+7f4889782000-7f48897c3000 r--s 00000000 103:06 9854709                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/8b0cf0912928abb11daf93ea0b5b95a11f889b2b27988fc6877476cacebbf98b/kotlinx-serialization-json-jvm-1.6.3.jar
+7f48897c3000-7f48897c7000 ---p 00000000 00:00 0 
+7f48897c7000-7f48898c4000 rw-p 00000000 00:00 0 
+7f48898c4000-7f48898c8000 ---p 00000000 00:00 0 
+7f48898c8000-7f48899c5000 rw-p 00000000 00:00 0 
+7f48899c5000-7f48899fd000 r--s 00000000 103:06 9854631                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/2566a0a7aaddaf97b29e11249f0adf5043459d31edcd18fadd01f24d6f556db8/fleet.util.network-1.31.107.jar
+7f48899fd000-7f4889a01000 ---p 00000000 00:00 0 
+7f4889a01000-7f4889afe000 rw-p 00000000 00:00 0 
+7f4889afe000-7f4889aff000 ---p 00000000 00:00 0 
+7f4889aff000-7f4889bff000 rw-p 00000000 00:00 0 
+7f4889bff000-7f4889c00000 ---p 00000000 00:00 0 
+7f4889c00000-7f4889d00000 rw-p 00000000 00:00 0 
+7f4889d00000-7f4889d01000 ---p 00000000 00:00 0 
+7f4889d01000-7f4889e01000 rw-p 00000000 00:00 0 
+7f4889e01000-7f4889e02000 ---p 00000000 00:00 0 
+7f4889e02000-7f4889f02000 rw-p 00000000 00:00 0 
+7f4889f02000-7f4889f03000 ---p 00000000 00:00 0 
+7f4889f03000-7f488a003000 rw-p 00000000 00:00 0 
+7f488a003000-7f488a004000 ---p 00000000 00:00 0 
+7f488a004000-7f488a104000 rw-p 00000000 00:00 0 
+7f488a104000-7f488a105000 ---p 00000000 00:00 0 
+7f488a105000-7f488a205000 rw-p 00000000 00:00 0 
+7f488a205000-7f488a206000 ---p 00000000 00:00 0 
+7f488a206000-7f488a306000 rw-p 00000000 00:00 0 
+7f488a306000-7f488a307000 ---p 00000000 00:00 0 
+7f488a307000-7f488a407000 rw-p 00000000 00:00 0 
+7f488a407000-7f488a408000 ---p 00000000 00:00 0 
+7f488a408000-7f488a508000 rw-p 00000000 00:00 0 
+7f488a508000-7f488a509000 ---p 00000000 00:00 0 
+7f488a509000-7f488a609000 rw-p 00000000 00:00 0 
+7f488a609000-7f488a60d000 ---p 00000000 00:00 0 
+7f488a60d000-7f488a70a000 rw-p 00000000 00:00 0 
+7f488a70a000-7f488a70e000 ---p 00000000 00:00 0 
+7f488a70e000-7f488a80b000 rw-p 00000000 00:00 0 
+7f488a80b000-7f488a8ab000 r--s 00000000 103:06 9854247                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/10c8eb1084ea37def1d7c5dead4b1f463c9a24b4edc8c25fb903286173135dee/fleet.noria.windowManagement.extensions-1.31.107.jar
+7f488a8ab000-7f488a8b8000 r--s 00000000 103:06 9854533                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/3cef37eb8032e01532ec7815482c41abc44c0de1c23db41294df3e2bc6db0f28/opentelemetry-sdk-logs-1.34.1.jar
+7f488a8b8000-7f488a900000 r--s 00000000 103:06 9854837                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/41414046c031ebe5a87492f46167969676e8bb57551b9d1b33a4c8f8bef625dd/opentelemetry-sdk-metrics-1.34.1.jar
+7f488a900000-7f488a91e000 r--s 00000000 103:06 9854309                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/14088b1d2df17d7b4c826e6ca4584bf489a4caf2e2d3b9af411cdaa019969b96/opentelemetry-sdk-trace-1.34.1.jar
+7f488a91e000-7f488aa1f000 r--s 00000000 103:06 9854893                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/f133699d8082679f53d3e2825b218eae81c324167d7c236884742b3f270b6ab4/fleet.util.core-1.31.107.jar
+7f488aa1f000-7f488aa2c000 r--s 00000000 103:06 9854555                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/b147bbc9eb1d7104313dc38e1da82d36f87b00861dff3408b553cd5aaee2f9ba/fleet.reporting.api-1.31.107.jar
+7f488aa2c000-7f488aa4a000 r--s 00000000 103:06 9854833                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/6c2dd4514928911000ac74a474f9bb016c1418ef32303e473f9d5c53e8a4b54e/fleet.reporting.shared-1.31.107.jar
+7f488aa4a000-7f488aa56000 r--s 00000000 103:06 9854633                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/aa56291d591bdbb5c937f87af2fce560dc21f6546834b594516cd2577016ef75/opentelemetry-context-1.34.1.jar
+7f488aa56000-7f488aaea000 r--s 00000000 103:06 9854747                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/5e6817472a33466074cc30d258cff6d6407ba0e5e960fddff9622ee080d9ec32/fleet.dock.connectors-1.31.107.jar
+7f488aaea000-7f488ab0c000 r--s 00000000 103:06 9854525                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/21c506455b1c405a053e22ce8e63ab3a103add28ff2024973fb03434ff9a7106/opentelemetry-api-1.34.1.jar
+7f488ab0c000-7f488ab37000 r--s 00000000 103:06 9854807                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/63d4d387a25c4d0988897f25e662d2b667b6778ff3ea9bc8ad1c4bc04ecaa0ff/fleet.reporting.opentelemetry-1.31.107.jar
+7f488ab37000-7f488ab3b000 ---p 00000000 00:00 0 
+7f488ab3b000-7f488ac38000 rw-p 00000000 00:00 0 
+7f488ac38000-7f488ac3c000 ---p 00000000 00:00 0 
+7f488ac3c000-7f488ad39000 rw-p 00000000 00:00 0 
+7f488ad39000-7f488ad3d000 ---p 00000000 00:00 0 
+7f488ad3d000-7f488ae3a000 rw-p 00000000 00:00 0 
+7f488ae3a000-7f488ae5c000 r--p 00000000 103:05 8529073                   /usr/share/locale-langpack/zh_CN/LC_MESSAGES/libc.mo
+7f488ae5c000-7f488aeae000 r--s 00000000 103:06 9854121                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/bef90151bc816b739ca9398ef5153fac33244ce7ba828a84679dca29249dbbad/ktor-utils-jvm-2.3.8.jar
+7f488aeae000-7f488aee8000 r--s 00000000 103:06 9854421                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/2164e52a7e8c38dae693c0e5b45f3e00e8a8f320a5cde8fc2d721005a6afff18/ktor-server-host-common-jvm-2.3.8.jar
+7f488aee8000-7f488b063000 r--s 00000000 103:06 9854513                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/f67e2c6c0162b8a3a916e1c9e169c48c11ba0ecca27e35cb4a68b6e81915e099/kotlinx-coroutines-core-jvm-1.7.3.jar
+7f488b063000-7f488b0f5000 r--s 00000000 103:06 9854767                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/ce40d20e0b6fe112559fa8aa4dd9846e8f779044a6541bd075d668ca129c63d1/ktor-server-core-jvm-2.3.8.jar
+7f488b0f5000-7f488b15b000 r--s 00000000 103:06 9854785                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/b6c13dfca896e0c51450afd6c21893e762588c88fb42ebef6e10953c20c84426/ktor-http-jvm-2.3.8.jar
+7f488b15b000-7f488b248000 r--s 00000000 103:06 9854317                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/a328f7646f22ca6052dc45e2e3e82550c77eec138e17972a15ffbbaea92a642f/fleet.dock.desktop-1.31.107.jar
+7f488b248000-7f488b48c000 r--s 00000000 103:06 9854351                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/db05245ccc3cf18d1b08187dc600ba659fecf5c5752c0f674adb29e18aff8dd7/fleet.dock.impl-1.31.107.jar
+7f488b48c000-7f488b48d000 ---p 00000000 00:00 0 
+7f488b48d000-7f488b58d000 rw-p 00000000 00:00 0 
+7f488b58d000-7f488b591000 ---p 00000000 00:00 0 
+7f488b591000-7f488b68e000 rw-p 00000000 00:00 0 
+7f488b68e000-7f488b692000 ---p 00000000 00:00 0 
+7f488b692000-7f488b78f000 rw-p 00000000 00:00 0 
+7f488b78f000-7f488c000000 r--p 00000000 103:05 6294514                   /usr/lib/locale/locale-archive
+7f488c000000-7f488c021000 rw-p 00000000 00:00 0 
+7f488c021000-7f4890000000 ---p 00000000 00:00 0 
+7f4890000000-7f4890021000 rw-p 00000000 00:00 0 
+7f4890021000-7f4894000000 ---p 00000000 00:00 0 
+7f4894000000-7f4894400000 rw-p 00000000 00:00 0 
+7f4894400000-7f4894500000 rw-p 00000000 00:00 0 
+7f4894500000-7f4894600000 rw-p 00000000 00:00 0 
+7f4894600000-7f4894680000 rw-p 00000000 00:00 0 
+7f4894680000-7f4894700000 rw-p 00000000 00:00 0 
+7f4894700000-7f4894900000 rw-p 00000000 00:00 0 
+7f4894900000-7f4894a00000 rw-p 00000000 00:00 0 
+7f4894a00000-7f4894b00000 rw-p 00000000 00:00 0 
+7f4894b00000-7f4894c00000 rw-p 00000000 00:00 0 
+7f4894c00000-7f4894d00000 rw-p 00000000 00:00 0 
+7f4894d00000-7f4894e00000 rw-p 00000000 00:00 0 
+7f4894e00000-7f4894f80000 rw-p 00000000 00:00 0 
+7f4894f80000-7f4895100000 rw-p 00000000 00:00 0 
+7f4895100000-7f4895180000 rw-p 00000000 00:00 0 
+7f4895180000-7f4895200000 rw-p 00000000 00:00 0 
+7f4895200000-7f4895280000 rw-p 00000000 00:00 0 
+7f4895280000-7f4895300000 rw-p 00000000 00:00 0 
+7f4895300000-7f4895480000 rw-p 00000000 00:00 0 
+7f4895480000-7f4895500000 rw-p 00000000 00:00 0 
+7f4895500000-7f48956d0000 rw-p 00000000 00:00 0 
+7f48956d0000-7f4895700000 ---p 00000000 00:00 0 
+7f4895700000-7f4895710000 rw-p 00000000 00:00 0 
+7f4895710000-7f4898000000 ---p 00000000 00:00 0 
+7f4898000000-7f4898021000 rw-p 00000000 00:00 0 
+7f4898021000-7f489c000000 ---p 00000000 00:00 0 
+7f489c000000-7f489c021000 rw-p 00000000 00:00 0 
+7f489c021000-7f48a0000000 ---p 00000000 00:00 0 
+7f48a0000000-7f48a0021000 rw-p 00000000 00:00 0 
+7f48a0021000-7f48a4000000 ---p 00000000 00:00 0 
+7f48a4000000-7f48a4021000 rw-p 00000000 00:00 0 
+7f48a4021000-7f48a8000000 ---p 00000000 00:00 0 
+7f48a8000000-7f48a8021000 rw-p 00000000 00:00 0 
+7f48a8021000-7f48ac000000 ---p 00000000 00:00 0 
+7f48ac000000-7f48ac00b000 r--s 00000000 103:06 9854885                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/1a7a1e7d54a0faf5dfddadf85bc4b8f294426311add665df21ca7b323a4d9fc8/fleet.reporting.anonymization-1.31.107.jar
+7f48ac00b000-7f48ac016000 r--s 00000000 103:06 9854273                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/c90ad17c2b9ae9bba2ce391605a670ce4f7d202f6b9d48d7a2314caac9b96fe4/opentelemetry-sdk-common-1.34.1.jar
+7f48ac016000-7f48ac021000 r--s 00000000 103:06 9854149                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/0d42420b87ccb47a106d8bad63b5c63fe1224d953649fdea08ec6199a2cbb9c6/fleet.util.logging.impl-1.31.107.jar
+7f48ac021000-7f48ac04b000 r--s 00000000 103:06 9854551                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/9ab0085be826bb099a0b2f1c73190be7f09fe93514be1a608571663718b22a6a/fleet.dock.api-1.31.107.jar
+7f48ac04b000-7f48ac04d000 r--p 00000000 103:06 9853621                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libzip.so
+7f48ac04d000-7f48ac051000 r-xp 00002000 103:06 9853621                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libzip.so
+7f48ac051000-7f48ac053000 r--p 00006000 103:06 9853621                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libzip.so
+7f48ac053000-7f48ac054000 r--p 00007000 103:06 9853621                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libzip.so
+7f48ac054000-7f48ac055000 rw-p 00000000 00:00 0 
+7f48ac055000-7f48ac057000 r--p 00000000 103:06 9853623                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement_ext.so
+7f48ac057000-7f48ac05a000 r-xp 00002000 103:06 9853623                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement_ext.so
+7f48ac05a000-7f48ac05b000 r--p 00005000 103:06 9853623                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement_ext.so
+7f48ac05b000-7f48ac05c000 ---p 00006000 103:06 9853623                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement_ext.so
+7f48ac05c000-7f48ac05d000 r--p 00006000 103:06 9853623                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement_ext.so
+7f48ac05d000-7f48ac08f000 rw-p 00000000 00:00 0 
+7f48ac08f000-7f48ac093000 ---p 00000000 00:00 0 
+7f48ac093000-7f48ac190000 rw-p 00000000 00:00 0 
+7f48ac190000-7f48ac194000 ---p 00000000 00:00 0 
+7f48ac194000-7f48ac291000 rw-p 00000000 00:00 0 
+7f48ac291000-7f48ac295000 ---p 00000000 00:00 0 
+7f48ac295000-7f48ac392000 rw-p 00000000 00:00 0 
+7f48ac392000-7f48ac396000 ---p 00000000 00:00 0 
+7f48ac396000-7f48ac493000 rw-p 00000000 00:00 0 
+7f48ac493000-7f48ac497000 ---p 00000000 00:00 0 
+7f48ac497000-7f48ac594000 rw-p 00000000 00:00 0 
+7f48ac594000-7f48ac598000 ---p 00000000 00:00 0 
+7f48ac598000-7f48ac695000 rw-p 00000000 00:00 0 
+7f48ac695000-7f48ac699000 ---p 00000000 00:00 0 
+7f48ac699000-7f48ac796000 rw-p 00000000 00:00 0 
+7f48ac796000-7f48ac79a000 ---p 00000000 00:00 0 
+7f48ac79a000-7f48ac897000 rw-p 00000000 00:00 0 
+7f48ac897000-7f48ac898000 ---p 00000000 00:00 0 
+7f48ac898000-7f48ac998000 rw-p 00000000 00:00 0 
+7f48acab2000-7f48acb8e000 rw-p 00000000 00:00 0 
+7f48acb8e000-7f48acb8f000 ---p 00000000 00:00 0 
+7f48acb8f000-7f48acc8f000 rw-p 00000000 00:00 0 
+7f48acc8f000-7f48acc90000 ---p 00000000 00:00 0 
+7f48acc90000-7f48af309000 rw-p 00000000 00:00 0 
+7f48af309000-7f48afa35000 ---p 00000000 00:00 0 
+7f48afa35000-7f48afa41000 rw-p 00000000 00:00 0 
+7f48afa41000-7f48afa5d000 ---p 00000000 00:00 0 
+7f48afa5d000-7f48afa65000 rw-p 00000000 00:00 0 
+7f48afa65000-7f48b0295000 ---p 00000000 00:00 0 
+7f48b0295000-7f48b0309000 rw-p 00000000 00:00 0 
+7f48b0309000-7f48b0a35000 ---p 00000000 00:00 0 
+7f48b0a35000-7f48b0a41000 rw-p 00000000 00:00 0 
+7f48b0a41000-7f48b0a5d000 ---p 00000000 00:00 0 
+7f48b0a5d000-7f48b0a65000 rw-p 00000000 00:00 0 
+7f48b0a65000-7f48b1295000 ---p 00000000 00:00 0 
+7f48b1295000-7f48b1565000 rwxp 00000000 00:00 0 
+7f48b1565000-7f48b87cd000 ---p 00000000 00:00 0 
+7f48b87cd000-7f48b8a3d000 rwxp 00000000 00:00 0 
+7f48b8a3d000-7f48b8d5c000 ---p 00000000 00:00 0 
+7f48b8d5c000-7f48b8fcc000 rwxp 00000000 00:00 0 
+7f48b8fcc000-7f48c0295000 ---p 00000000 00:00 0 
+7f48c0295000-7f48c4000000 r--s 00000000 103:06 9853921                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/modules
+7f48c4000000-7f48c49be000 rw-p 00000000 00:00 0 
+7f48c49be000-7f48c8000000 ---p 00000000 00:00 0 
+7f48c8000000-7f48c8001000 r--s 00000000 103:05 9176686                   /var/cache/fontconfig/cad756e7-23da-47b8-b388-e13e44bfc46c-le64.cache-7
+7f48c8001000-7f48c8008000 r--s 00000000 103:05 6948245                   /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7f48c8008000-7f48c800c000 r--p 00000000 103:06 9853712                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnet.so
+7f48c800c000-7f48c801a000 r-xp 00004000 103:06 9853712                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnet.so
+7f48c801a000-7f48c801e000 r--p 00012000 103:06 9853712                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnet.so
+7f48c801e000-7f48c801f000 r--p 00015000 103:06 9853712                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnet.so
+7f48c801f000-7f48c8020000 rw-p 00016000 103:06 9853712                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnet.so
+7f48c8020000-7f48c8027000 r--p 00000000 103:06 9853622                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+7f48c8027000-7f48c8030000 r-xp 00007000 103:06 9853622                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+7f48c8030000-7f48c8034000 r--p 00010000 103:06 9853622                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+7f48c8034000-7f48c8035000 ---p 00014000 103:06 9853622                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+7f48c8035000-7f48c8036000 r--p 00014000 103:06 9853622                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+7f48c8036000-7f48c8037000 rw-p 00015000 103:06 9853622                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libnio.so
+7f48c8037000-7f48c8a82000 rw-p 00000000 00:00 0 
+7f48c8a82000-7f48c8a83000 ---p 00000000 00:00 0 
+7f48c8a83000-7f48c8b83000 rw-p 00000000 00:00 0 
+7f48c8b83000-7f48c8b84000 ---p 00000000 00:00 0 
+7f48c8b84000-7f48c8c84000 rw-p 00000000 00:00 0 
+7f48c8c84000-7f48c8c85000 ---p 00000000 00:00 0 
+7f48c8c85000-7f48c8e17000 rw-p 00000000 00:00 0 
+7f48c8e17000-7f48c8efc000 ---p 00000000 00:00 0 
+7f48c8efc000-7f48c8efe000 rw-p 00000000 00:00 0 
+7f48c8efe000-7f48c8f01000 ---p 00000000 00:00 0 
+7f48c8f01000-7f48c8f02000 rw-p 00000000 00:00 0 
+7f48c8f02000-7f48c9008000 ---p 00000000 00:00 0 
+7f48c9008000-7f48c9017000 rw-p 00000000 00:00 0 
+7f48c9017000-7f48c90fc000 ---p 00000000 00:00 0 
+7f48c90fc000-7f48c90fe000 rw-p 00000000 00:00 0 
+7f48c90fe000-7f48c9101000 ---p 00000000 00:00 0 
+7f48c9101000-7f48c9102000 rw-p 00000000 00:00 0 
+7f48c9102000-7f48c9208000 ---p 00000000 00:00 0 
+7f48c9208000-7f48c9217000 rw-p 00000000 00:00 0 
+7f48c9217000-7f48c92fc000 ---p 00000000 00:00 0 
+7f48c92fc000-7f48c92fe000 rw-p 00000000 00:00 0 
+7f48c92fe000-7f48c9301000 ---p 00000000 00:00 0 
+7f48c9301000-7f48c9302000 rw-p 00000000 00:00 0 
+7f48c9302000-7f48c9408000 ---p 00000000 00:00 0 
+7f48c9408000-7f48ca31c000 rw-p 00000000 00:00 0 
+7f48ca31c000-7f48ca402000 ---p 00000000 00:00 0 
+7f48ca402000-7f48ca408000 rw-p 00000000 00:00 0 
+7f48ca408000-7f48ca4ed000 ---p 00000000 00:00 0 
+7f48ca4ed000-7f48ca4f9000 r--p 00000000 103:06 9853636                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+7f48ca4f9000-7f48ca50b000 r-xp 0000c000 103:06 9853636                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+7f48ca50b000-7f48ca511000 r--p 0001e000 103:06 9853636                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+7f48ca511000-7f48ca512000 ---p 00024000 103:06 9853636                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+7f48ca512000-7f48ca513000 r--p 00024000 103:06 9853636                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+7f48ca513000-7f48ca514000 rw-p 00025000 103:06 9853636                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjava.so
+7f48ca514000-7f48ca515000 rw-p 00000000 00:00 0 
+7f48ca515000-7f48ca519000 ---p 00000000 00:00 0 
+7f48ca519000-7f48ca616000 rw-p 00000000 00:00 0 
+7f48ca616000-7f48ca623000 r--p 00000000 103:05 6293659                   /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f48ca623000-7f48ca6ca000 r-xp 0000d000 103:05 6293659                   /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f48ca6ca000-7f48ca763000 r--p 000b4000 103:05 6293659                   /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f48ca763000-7f48ca764000 r--p 0014c000 103:05 6293659                   /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f48ca764000-7f48ca765000 rw-p 0014d000 103:05 6293659                   /usr/lib/x86_64-linux-gnu/libm-2.31.so
+7f48ca765000-7f48ca9b8000 r--p 00000000 103:06 9853666                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so
+7f48ca9b8000-7f48cb6dd000 r-xp 00253000 103:06 9853666                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so
+7f48cb6dd000-7f48cb96d000 r--p 00f78000 103:06 9853666                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so
+7f48cb96d000-7f48cb96e000 ---p 01208000 103:06 9853666                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so
+7f48cb96e000-7f48cba27000 r--p 01208000 103:06 9853666                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so
+7f48cba27000-7f48cba5c000 rw-p 012c1000 103:06 9853666                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/server/libjvm.so
+7f48cba5c000-7f48cbac6000 rw-p 00000000 00:00 0 
+7f48cbac6000-7f48cbacc000 r--p 00000000 103:05 6293694                   /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f48cbacc000-7f48cbadd000 r-xp 00006000 103:05 6293694                   /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f48cbadd000-7f48cbae3000 r--p 00017000 103:05 6293694                   /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f48cbae3000-7f48cbae4000 r--p 0001c000 103:05 6293694                   /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f48cbae4000-7f48cbae5000 rw-p 0001d000 103:05 6293694                   /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f48cbae5000-7f48cbae9000 rw-p 00000000 00:00 0 
+7f48cbae9000-7f48cbaeb000 r--p 00000000 103:06 9853628                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement.so
+7f48cbaeb000-7f48cbaec000 r-xp 00002000 103:06 9853628                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement.so
+7f48cbaec000-7f48cbaed000 r--p 00003000 103:06 9853628                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement.so
+7f48cbaed000-7f48cbaee000 r--p 00003000 103:06 9853628                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libmanagement.so
+7f48cbaee000-7f48cbaf4000 rw-p 00000000 00:00 0 
+7f48cbaf4000-7f48cbafb000 ---p 00000000 00:00 0 
+7f48cbafb000-7f48cbafe000 r--p 00000000 103:05 6293676                   /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f48cbafe000-7f48cbb05000 r-xp 00003000 103:05 6293676                   /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f48cbb05000-7f48cbb07000 r--p 0000a000 103:05 6293676                   /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f48cbb07000-7f48cbb08000 r--p 0000b000 103:05 6293676                   /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f48cbb08000-7f48cbb09000 rw-p 0000c000 103:05 6293676                   /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f48cbb09000-7f48cbb0f000 rw-p 00000000 00:00 0 
+7f48cbb0f000-7f48cbb12000 r--p 00000000 103:06 9853699                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjimage.so
+7f48cbb12000-7f48cbb26000 r-xp 00003000 103:06 9853699                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjimage.so
+7f48cbb26000-7f48cbb2c000 r--p 00017000 103:06 9853699                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjimage.so
+7f48cbb2c000-7f48cbb2e000 r--p 0001c000 103:06 9853699                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjimage.so
+7f48cbb2e000-7f48cbb2f000 rw-p 0001e000 103:06 9853699                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjimage.so
+7f48cbb2f000-7f48cbb32000 rw-p 00000000 00:00 0 
+7f48cbb32000-7f48cbb54000 r--p 00000000 103:05 6293653                   /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f48cbb54000-7f48cbccc000 r-xp 00022000 103:05 6293653                   /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f48cbccc000-7f48cbd1a000 r--p 0019a000 103:05 6293653                   /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f48cbd1a000-7f48cbd1e000 r--p 001e7000 103:05 6293653                   /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f48cbd1e000-7f48cbd20000 rw-p 001eb000 103:05 6293653                   /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f48cbd20000-7f48cbd24000 rw-p 00000000 00:00 0 
+7f48cbd24000-7f48cbd25000 r--p 00000000 103:05 6293658                   /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f48cbd25000-7f48cbd27000 r-xp 00001000 103:05 6293658                   /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f48cbd27000-7f48cbd28000 r--p 00003000 103:05 6293658                   /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f48cbd28000-7f48cbd29000 r--p 00003000 103:05 6293658                   /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f48cbd29000-7f48cbd2a000 rw-p 00004000 103:05 6293658                   /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f48cbd2a000-7f48cbd2b000 r--s 00000000 103:05 9176570                   /var/cache/fontconfig/40860bc2-7bfd-4310-b5b1-72e31967a122-le64.cache-7
+7f48cbd2b000-7f48cbd2c000 r--s 00000000 00:36 155                        /run/user/1000/dconf/user
+7f48cbd2c000-7f48cbd2e000 r--s 00000000 103:06 9854409                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app/code-cache/a5ccefe5441829e969f6086b37e20ceef677cc2551a65fec1d1f308fb3ab87f1/opentelemetry-sdk-1.34.1.jar
+7f48cbd2e000-7f48cbd36000 rw-s 00000000 103:05 5636151                   /tmp/hsperfdata_yansu/24684
+7f48cbd36000-7f48cbd37000 ---p 00000000 00:00 0 
+7f48cbd37000-7f48cbd38000 r--p 00000000 00:00 0 
+7f48cbd38000-7f48cbd3a000 r--p 00000000 103:05 6293703                   /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f48cbd3a000-7f48cbd3e000 r-xp 00002000 103:05 6293703                   /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f48cbd3e000-7f48cbd40000 r--p 00006000 103:05 6293703                   /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f48cbd40000-7f48cbd41000 r--p 00007000 103:05 6293703                   /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f48cbd41000-7f48cbd42000 rw-p 00008000 103:05 6293703                   /usr/lib/x86_64-linux-gnu/librt-2.31.so
+7f48cbd42000-7f48cbd44000 r--p 00000000 103:05 6291648                   /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f48cbd44000-7f48cbd55000 r-xp 00002000 103:05 6291648                   /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f48cbd55000-7f48cbd5b000 r--p 00013000 103:05 6291648                   /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f48cbd5b000-7f48cbd5c000 ---p 00019000 103:05 6291648                   /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f48cbd5c000-7f48cbd5d000 r--p 00019000 103:05 6291648                   /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f48cbd5d000-7f48cbd5e000 rw-p 0001a000 103:05 6291648                   /usr/lib/x86_64-linux-gnu/libz.so.1.2.11
+7f48cbd5e000-7f48cbd60000 r--p 00000000 103:06 9853626                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjli.so
+7f48cbd60000-7f48cbd6a000 r-xp 00002000 103:06 9853626                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjli.so
+7f48cbd6a000-7f48cbd6d000 r--p 0000c000 103:06 9853626                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjli.so
+7f48cbd6d000-7f48cbd6e000 ---p 0000f000 103:06 9853626                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjli.so
+7f48cbd6e000-7f48cbd6f000 r--p 0000f000 103:06 9853626                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjli.so
+7f48cbd6f000-7f48cbd70000 rw-p 00010000 103:06 9853626                   /home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/runtime/lib/libjli.so
+7f48cbd70000-7f48cbd72000 rw-p 00000000 00:00 0 
+7f48cbd72000-7f48cbd73000 r--p 00000000 103:05 6293642                   /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f48cbd73000-7f48cbd96000 r-xp 00001000 103:05 6293642                   /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f48cbd96000-7f48cbd9e000 r--p 00024000 103:05 6293642                   /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f48cbd9e000-7f48cbd9f000 rwxp 00000000 00:00 0 
+7f48cbd9f000-7f48cbda0000 r--p 0002c000 103:05 6293642                   /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f48cbda0000-7f48cbda1000 rw-p 0002d000 103:05 6293642                   /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f48cbda1000-7f48cbda2000 rw-p 00000000 00:00 0 
+7ffeb99ff000-7ffeb9a21000 rw-p 00000000 00:00 0                          [stack]
+7ffeb9bb4000-7ffeb9bb8000 r--p 00000000 00:00 0                          [vvar]
+7ffeb9bb8000-7ffeb9bba000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+
+VM Arguments:
+jvm_args: -Djpackage.app-version=1.31.107 -ea -Xmx1G -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpGzipLevel=1 -XX:NativeMemoryTracking=summary -XX:CICompilerCount=2 -Dfleet.distribution.mode=true -Dfleet.dock.version=1.31.107 -Dfleet.build.date=1709819615 -Dkotlinx.coroutines.debug=off -Dnoria.render.mode=skiko -Dsun.java2d.uiScale.enabled=true -Dcom.sun.awt.reportDeadKeysAsNormal=false -Dskiko.win.exception.logger.enabled=true -Dskiko.collect.stat=true --add-opens=java.base/java.lang=fleet.util.modules -Djpackage.app-path=/home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/bin/Fleet -Djdk.module.main=fleet.dock.bootstrap 
+java_command: fleet.dock.bootstrap/fleet.dock.bootstrap.FleetBootstrapKt fleet://open?args_count=1&arg_0=.&pwd=%2Fhome%2Fyansu%2Fresearch_workspace%2Frustlings-semester-3-1879615351
+java_class_path (initial): <not set>
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 2                                         {product} {command line}
+     uint ConcGCThreads                            = 4                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 15                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+     intx HeapDumpGzipLevel                        = 1                                      {manageable} {command line}
+     bool HeapDumpOnOutOfMemoryError               = true                                   {manageable} {command line}
+   size_t InitialHeapSize                          = 524288000                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1073741824                                {product} {command line}
+   size_t MaxNewSize                               = 643825664                                 {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    ccstr NativeMemoryTracking                     = summary                                   {product} {command line}
+    uintx NonNMethodCodeHeapSize                   = 5826188                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122916026                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122916026                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 1073741824                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/opt/ros/noetic/bin:/home/yansu/packages/nodejs/bin:/home/yansu/packages/flutter/bin:/home/yansu/softwares/go1.21.6.linux-amd64/go/bin:/usr/local/cuda-11.8/bin:/home/yansu/.cargo/bin:/home/yansu/.local/bin:/home/linuxbrew/.linuxbrew/Homebrew/bin:/home/linuxbrew/.linuxbrew/Homebrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/yansu/.local/share/JetBrains/Toolbox/scripts
+USERNAME=yansu
+LD_LIBRARY_PATH=/home/yansu/caktin_ws/devel/lib:/home/yansu/research_workspace/lir_lio/devel/lib:/home/yansu/workspace/r3live/devel/lib:/home/yansu/workspace/A-LOAM/devel/lib:/home/yansu/workspace/FAST_LIO-main/devel/lib:/home/yansu/ros_packs/devel/lib:/opt/ros/noetic/lib:/usr/local/cuda-11.8/lib64:/home/yansu/.local/share/JetBrains/Toolbox/apps/fleet/lib/app
+SHELL=/usr/bin/zsh
+DISPLAY=:0
+LANG=zh_CN.UTF-8
+LC_NUMERIC=zh_CN.UTF-8
+LC_TIME=zh_CN.UTF-8
+TERM=xterm-256color
+
+Active Locale:
+LC_ALL=zh_CN.UTF-8
+LC_COLLATE=zh_CN.UTF-8
+LC_CTYPE=zh_CN.UTF-8
+LC_MESSAGES=zh_CN.UTF-8
+LC_MONETARY=zh_CN.UTF-8
+LC_NUMERIC=zh_CN.UTF-8
+LC_TIME=zh_CN.UTF-8
+
+Signal Handlers:
+   SIGSEGV: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGBUS: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGFPE: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGPIPE: SIG_IGN, mask=00000000000010000000000000000000, flags=SA_RESTART, blocked
+  *** Handler was modified!
+  *** Expected: javaSignalHandler in libjvm.so, mask=11100100110111111111111111111110, flags=SA_RESTART|SA_SIGINFO
+   SIGXFSZ: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGILL: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGUSR2: SR_handler in libjvm.so, mask=00000000000000000000000000000000, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGHUP: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGINT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTERM: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGQUIT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTRAP: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+
+
+Native Memory Tracking:
+
+(Omitting categories weighting less than 1KB)
+
+Total: reserved=2588466KB, committed=163430KB
+       malloc: 56446KB #157316
+       mmap:   reserved=2532020KB, committed=106984KB
+
+-                 Java Heap (reserved=1048576KB, committed=34816KB)
+                            (mmap: reserved=1048576KB, committed=34816KB) 
+ 
+-                     Class (reserved=504KB, committed=504KB)
+                            (classes #4724)
+                            (  instance classes #4363, array classes #361)
+                            (malloc=504KB #10056) 
+                            (  Metadata:   )
+                            (    reserved=65536KB, committed=23424KB)
+                            (    used=23284KB)
+                            (    waste=140KB =0.60%)
+                            (  Class space:)
+                            (    reserved=1048576KB, committed=3136KB)
+                            (    used=3034KB)
+                            (    waste=102KB =3.26%)
+ 
+-                    Thread (reserved=49589KB, committed=3225KB)
+                            (thread #49)
+                            (stack: reserved=49396KB, committed=3032KB)
+                            (malloc=74KB #298) 
+                            (arena=119KB #96)
+ 
+-                      Code (reserved=248006KB, committed=8254KB)
+                            (malloc=318KB #3135) 
+                            (mmap: reserved=247688KB, committed=7936KB) 
+ 
+-                        GC (reserved=104842KB, committed=67234KB)
+                            (malloc=32638KB #2743) 
+                            (mmap: reserved=72204KB, committed=34596KB) 
+ 
+-                  Compiler (reserved=521KB, committed=521KB)
+                            (malloc=96KB #194) 
+                            (arena=425KB #10)
+ 
+-                  Internal (reserved=4364KB, committed=4364KB)
+                            (malloc=4328KB #4178) 
+                            (mmap: reserved=36KB, committed=36KB) 
+ 
+-                     Other (reserved=252KB, committed=252KB)
+                            (malloc=252KB #21) 
+ 
+-                    Symbol (reserved=7094KB, committed=7094KB)
+                            (malloc=4944KB #133411) 
+                            (arena=2150KB #1)
+ 
+-    Native Memory Tracking (reserved=2467KB, committed=2467KB)
+                            (malloc=9KB #127) 
+                            (tracking overhead=2458KB)
+ 
+-               Arena Chunk (reserved=7753KB, committed=7753KB)
+                            (malloc=7753KB) 
+ 
+-                    Module (reserved=248KB, committed=248KB)
+                            (malloc=248KB #2016) 
+ 
+-                 Safepoint (reserved=8KB, committed=8KB)
+                            (mmap: reserved=8KB, committed=8KB) 
+ 
+-           Synchronization (reserved=50KB, committed=50KB)
+                            (malloc=50KB #621) 
+ 
+-            Serviceability (reserved=1KB, committed=1KB)
+                            (malloc=1KB #6) 
+ 
+-                 Metaspace (reserved=65608KB, committed=23496KB)
+                            (malloc=72KB #39) 
+                            (mmap: reserved=65536KB, committed=23424KB) 
+ 
+-      String Deduplication (reserved=1KB, committed=1KB)
+                            (malloc=1KB #8) 
+ 
+-           Object Monitors (reserved=5KB, committed=5KB)
+                            (malloc=5KB #24) 
+ 
+-                   Unknown (reserved=1048576KB, committed=3136KB)
+                            (mmap: reserved=1048576KB, committed=3136KB) 
+ 
+Preinit state:entries: 397 (primary: 396, empties: 7523), sum bytes: 12325, longest chain length: 2
+pre-init mallocs: 440, pre-init reallocs: 18, pre-init frees: 43
+
+Periodic native trim disabled
+
+JNI global refs:
+JNI global refs: 106, weak refs: 2
+
+JNI global refs memory usage: 1499, weak refs: 865
+
+OOME stack traces (most recent first):
+Classloader memory used:
+Loader bootstrap                                                                       : 2125K
+Loader jdk.internal.loader.Loader                                                      : 754K
+Loader jdk.internal.loader.ClassLoaders$AppClassLoader                                 : 402K
+Loader jdk.internal.loader.ClassLoaders$PlatformClassLoader                            : 4179B
+Loader jdk.internal.reflect.DelegatingClassLoader                                      : 3011B
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.6 LTS"
+uname: Linux 5.15.0-100-generic #110~20.04.1-Ubuntu SMP Tue Feb 13 14:25:03 UTC 2024 x86_64
+OS uptime: 0 days 0:22 hours
+libc: glibc 2.31 NPTL 2.31 
+rlimit (soft/hard): STACK 8192k/infinity , CORE 0k/infinity , NPROC 127210/127210 , NOFILE 1048576/1048576 , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK 65536k/65536k
+load average: 1.79 1.22 0.80
+
+/proc/meminfo:
+MemTotal:       32647308 kB
+MemFree:        20762152 kB
+MemAvailable:   29059348 kB
+Buffers:          203472 kB
+Cached:          8314952 kB
+SwapCached:            0 kB
+Active:          2548560 kB
+Inactive:        8448380 kB
+Active(anon):       6896 kB
+Inactive(anon):  2522532 kB
+Active(file):    2541664 kB
+Inactive(file):  5925848 kB
+Unevictable:          64 kB
+Mlocked:              64 kB
+SwapTotal:      31999996 kB
+SwapFree:       31999996 kB
+Dirty:           1109944 kB
+Writeback:             0 kB
+AnonPages:       2478972 kB
+Mapped:           860500 kB
+Shmem:             50912 kB
+KReclaimable:     301408 kB
+Slab:             487388 kB
+SReclaimable:     301408 kB
+SUnreclaim:       185980 kB
+KernelStack:       17628 kB
+PageTables:        34616 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    48323648 kB
+Committed_AS:    9870292 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      121248 kB
+VmallocChunk:          0 kB
+Percpu:            20448 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      674688 kB
+DirectMap2M:    10647552 kB
+DirectMap1G:    22020096 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled: always [madvise] never
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter): always defer defer+madvise [madvise] never
+
+Process Memory:
+Virtual Size: 6193472K (peak: 6194600K)
+Resident Set Size: 137728K (peak: 156848K) (anon: 88220K, file: 49508K, shmem: 0K)
+Swapped out: 0K
+
+[timeout occurred during error reporting in step "printing OS information"] after 30 s.
+CPU: total 20 (initial active 20) (10 cores per cpu, 2 threads per core) family 6 model 154 stepping 3 microcode 0x430, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb
+CPU Model and flags from /proc/cpuinfo:
+model name	: 12th Gen Intel(R) Core(TM) i9-12900H
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req umip pku ospke waitpkg gfni vaes vpclmulqdq tme rdpid movdiri movdir64b fsrm md_clear serialize pconfig arch_lbr flush_l1d arch_capabilities
+
+Online cpus: 0-19
+Offline cpus: 
+BIOS frequency limitation: <Not Available>
+Frequency switch latency (ns): 0
+Available cpu frequencies: <Not Available>
+Current governor: powersave
+Core performance/turbo boost: <Not Available>
+
+Memory: 4k page, physical 32647308k(21197160k free), swap 31999996k(31999996k free)
+Page Sizes: 4k
+
+vm_info: OpenJDK 64-Bit Server VM (17.0.9+8-b1166) for linux-amd64 JRE (17.0.9+8-b1166), built on 2024-01-12 by "builduser" with gcc 10.2.1 20210130 (Red Hat 10.2.1-11)
+
+END.
