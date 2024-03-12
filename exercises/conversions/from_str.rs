@@ -1,14 +1,3 @@
-// from_str.rs
-//
-// This is similar to from_into.rs, but this time we'll implement `FromStr` and
-// return errors instead of falling back to a default value. Additionally, upon
-// implementing FromStr, you can use the `parse` method on strings to generate
-// an object of the implementor type. You can read more about it at
-// https://doc.rust-lang.org/std/str/trait.FromStr.html
-//
-// Execute `rustlings hint from_str` or use the `hint` watch subcommand for a
-// hint.
-
 use std::num::ParseIntError;
 use std::str::FromStr;
 
@@ -52,6 +41,25 @@ enum ParsePersonError {
 impl FromStr for Person {
     type Err = ParsePersonError;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
+        if s.len()==0{
+            std::result::Result::Err(ParsePersonError::Empty)
+        }else{
+            let data:Vec<&str>  = s.split(',').collect();
+            if data.len()!=2{
+                std::result::Result::Err(ParsePersonError::BadLen)
+            }else if data[0]==""{
+                std::result::Result::Err(ParsePersonError::NoName)
+            }else if data[1]==""{
+                std::result::Result::Err(ParsePersonError::ParseInt(data[1].parse::<usize>().err().unwrap()))
+            }else if data[1].parse::<usize>().is_err() {
+                std::result::Result::Err(ParsePersonError::ParseInt(data[1].parse::<usize>().err().unwrap()))
+            }else{
+                Ok(Person{
+                    name:data[0].to_string(),
+                    age:data[1].parse::<usize>().unwrap()
+                })
+            }
+        }
     }
 }
 
